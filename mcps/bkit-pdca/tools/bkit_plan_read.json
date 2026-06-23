@@ -1,0 +1,16 @@
+{
+  "name": "bkit_plan_read",
+  "description": "Read the Plan document (docs/01-plan/features/{feature}.plan.md).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "feature"
+    ],
+    "additionalProperties": false
+  }
+}

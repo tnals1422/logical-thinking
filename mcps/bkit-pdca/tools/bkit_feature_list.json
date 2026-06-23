@@ -1,0 +1,34 @@
+{
+  "name": "bkit_feature_list",
+  "description": "List active, completed, or archived features.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": [
+          "active",
+          "completed",
+          "archived",
+          "all"
+        ],
+        "default": "all"
+      },
+      "phase": {
+        "type": "string",
+        "enum": [
+          "pm",
+          "plan",
+          "design",
+          "do",
+          "check",
+          "act",
+          "report",
+          "completed",
+          "archived"
+        ]
+      }
+    },
+    "additionalProperties": false
+  }
+}

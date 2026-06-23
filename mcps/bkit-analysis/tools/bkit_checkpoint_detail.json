@@ -1,0 +1,17 @@
+{
+  "name": "bkit_checkpoint_detail",
+  "description": "Get detailed information for a specific checkpoint.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Checkpoint ID (cp-{timestamp})."
+      }
+    },
+    "required": [
+      "id"
+    ],
+    "additionalProperties": false
+  }
+}

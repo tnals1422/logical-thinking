@@ -1,0 +1,55 @@
+{
+  "name": "bkit_regression_rules",
+  "description": "List or add regression prevention rules. action=list to query, action=add to add a new rule.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": [
+          "list",
+          "add"
+        ],
+        "default": "list"
+      },
+      "category": {
+        "type": "string",
+        "description": "Filter rules by category (list mode)."
+      },
+      "rule": {
+        "type": "object",
+        "description": "Rule definition (required for action=add).",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "Violation detection pattern (regex or natural language)."
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "category",
+          "description",
+          "severity"
+        ]
+      }
+    },
+    "additionalProperties": false
+  }
+}

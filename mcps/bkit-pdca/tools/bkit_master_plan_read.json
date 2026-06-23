@@ -1,0 +1,17 @@
+{
+  "name": "bkit_master_plan_read",
+  "description": "Read sprint master plan JSON state (schemaVersion, features, sprints, dependencyGraph).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "projectId": {
+        "type": "string",
+        "description": "Sprint master plan project id (kebab-case)."
+      }
+    },
+    "required": [
+      "projectId"
+    ],
+    "additionalProperties": false
+  }
+}

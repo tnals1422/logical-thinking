@@ -1,0 +1,16 @@
+{
+  "name": "bkit_analysis_read",
+  "description": "Read the Analysis document (docs/03-analysis/{feature}.analysis.md).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "feature"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "bkit_gap_analysis",
+  "description": "Read latest gap analysis results (design-implementation mismatches).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Filter by feature name."
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 50,
+        "default": 10,
+        "description": "Max gap items to return."
+      }
+    },
+    "additionalProperties": false
+  }
+}

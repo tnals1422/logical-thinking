@@ -1,0 +1,25 @@
+{
+  "name": "bkit_pdca_history",
+  "description": "Read PDCA history events with optional limit and since filters.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Filter by feature name."
+      },
+      "limit": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 200,
+        "default": 50,
+        "description": "Max items to return."
+      },
+      "since": {
+        "type": "string",
+        "description": "ISO datetime — return events after this time."
+      }
+    },
+    "additionalProperties": false
+  }
+}

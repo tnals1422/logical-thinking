@@ -1,0 +1,16 @@
+{
+  "name": "bkit_design_read",
+  "description": "Read the Design document (docs/02-design/features/{feature}.design.md).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "feature"
+    ],
+    "additionalProperties": false
+  }
+}

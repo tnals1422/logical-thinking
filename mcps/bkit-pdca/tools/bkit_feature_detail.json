@@ -1,0 +1,17 @@
+{
+  "name": "bkit_feature_detail",
+  "description": "Get detailed info for a single feature (phase, metrics, timestamps, documents).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Feature name."
+      }
+    },
+    "required": [
+      "feature"
+    ],
+    "additionalProperties": false
+  }
+}

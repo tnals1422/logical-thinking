@@ -1,0 +1,1 @@
+- 다음 경로 참조: https://github.com/popup-studio-ai/bkit-claude-code/blob/main/CUSTOMIZATION-GUIDE.md

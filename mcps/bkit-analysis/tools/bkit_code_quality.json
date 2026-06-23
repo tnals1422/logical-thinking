@@ -1,0 +1,19 @@
+{
+  "name": "bkit_code_quality",
+  "description": "Read code quality analysis results from quality-metrics.json. Optionally filter by feature.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Filter results for a specific feature."
+      },
+      "includeIssues": {
+        "type": "boolean",
+        "default": true,
+        "description": "Include individual issue list."
+      }
+    },
+    "additionalProperties": false
+  }
+}

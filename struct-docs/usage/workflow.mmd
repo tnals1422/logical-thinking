@@ -1,0 +1,127 @@
+flowchart TD
+    %% ============================================
+    %% Struct Agent Team Workflow
+    %% Minto 기반 구조화 에이전트 팀 전체 흐름
+    %% ============================================
+
+    subgraph User["사용자"]
+        direction TB
+        Call["/struct-think<br>/struct-write<br>/struct-solve<br>/struct-express<br>/struct-review"]
+    end
+
+    subgraph Skills["Skills Layer (SKILL.md)"]
+        direction LR
+        SThink["struct-think"]
+        SWrite["struct-write<br>(template 옵션)"]
+        SSolve["struct-solve"]
+        SExpress["struct-express<br>(slide/memo/story)"]
+        SReview["struct-review<br>(Fidelity Gate)"]
+    end
+
+    subgraph Orchestrator["Orchestrator (sonnet)"]
+        direction TB
+        O1["1. 커맨드 파싱<br>Task + Options 추출"]
+        O2["2. .struct-memory.json 로드"]
+        O3["3. 모드 감지<br>Collaborative vs Autonomous"]
+        O4{"Prior Injection 필요?<br>(write / solve / express)"}
+        O5["4. Prior Thinking 선택<br>유사도 + 최신 + 옵션"]
+        O6["5. Prior 파일 Read +<br>## Previous Thinking Pyramid 주입"]
+        O7["6. 전문 Agent 라우팅"]
+    end
+
+    subgraph Specialists["Specialist Agents"]
+        direction LR
+        Think["thinking.md<br>(opus)<br>Minto 6-Step"]
+        Write["writing.md<br>(opus)<br>Pyramid Consumption + Template"]
+        Solve["problem-solving.md<br>(opus)<br>가설 기반 문제 분석"]
+        Express["expression.md<br>(sonnet)<br>슬라이드/메모/스토리 변환"]
+        Review["review.md<br>(sonnet)<br>Fidelity Gate + Directives"]
+    end
+
+    subgraph Storage["Storage & Memory"]
+        direction TB
+        Save["struct-docs/ 저장<br>01-thinking/<br>02-writing/<br>03-solving/<br>04-expressing/<br>05-reviewing/"]
+        MemUpdate[".struct-memory.json<br>previousThoughts /<br>previousDocuments 업데이트"]
+    end
+
+    %% Main Flow
+    Call --> Skills
+    Skills --> O1
+    O1 --> O2
+    O2 --> O3
+
+    O3 --> O4
+    O4 -->|Yes| O5
+    O4 -->|No (think)| O7
+
+    O5 --> O6
+    O6 --> O7
+
+    O7 --> Think
+    O7 --> Write
+    O7 --> Solve
+    O7 --> Express
+    O7 --> Review
+
+    %% Mode 영향 (점선으로 표시)
+    O3 -. Collaborative<br>중간 확인 다수 .-> Think
+    O3 -. Collaborative<br>중간 확인 다수 .-> Write
+    O3 -. Collaborative<br>중간 확인 다수 .-> Solve
+    O3 -. Collaborative<br>중간 확인 다수 .-> Express
+
+    O3 -. Autonomous<br>최소 요약 + 자동 .-> Think
+    O3 -. Autonomous<br>최소 요약 + 자동 .-> Write
+    O3 -. Autonomous<br>최소 요약 + 자동 .-> Solve
+    O3 -. Autonomous<br>최소 요약 + 자동 .-> Express
+
+    Think --> Save
+    Write --> Save
+    Solve --> Save
+    Express --> Save
+
+    %% Review Gate (write/solve/express 후 Orchestrator 제어)
+    Write -.->|"후처리 게이트<br>(옵션)"| ReviewGate
+    Solve -.->|"후처리 게이트<br>(옵션)"| ReviewGate
+    Express -.->|"후처리 게이트<br>(옵션)"| ReviewGate
+    ReviewGate["Review Gate<br>(Orchestrator 제어)"] --> Review
+    Review --> Save
+
+    Save --> MemUpdate
+    MemUpdate --> Call
+
+    %% Template 특수 흐름 (writing 전용)
+    subgraph WritingDetail["Writing 전용"]
+        direction LR
+        GlobT["Glob: struct-docs/templates/*.md"]
+        ReadT["선택된 템플릿 Read"]
+        ApplyT["템플릿 구조 적용<br>report-default / iaej /<br>structure-event-response 등"]
+    end
+
+    Write --> GlobT
+    GlobT --> ReadT
+    ReadT --> ApplyT
+    ApplyT --> Save
+
+    %% Fallback (Orchestrator 실패 시)
+    Fallback["직접 Specialist 호출<br>(Fallback)"]
+    Skills -.->|Orchestrator 실패| Fallback
+    Fallback --> Think
+    Fallback --> Write
+    Fallback --> Solve
+    Fallback --> Express
+
+    %% 스타일
+    classDef user fill:#e3f2fd,stroke:#1976d2
+    classDef skill fill:#f3e5f5,stroke:#7b1fa2
+    classDef orch fill:#e8f5e9,stroke:#388e3c
+    classDef spec fill:#fff3e0,stroke:#f57c00
+    classDef store fill:#fce4ec,stroke:#c2185b
+    classDef detail fill:#f5f5f5,stroke:#616161,stroke-dasharray: 5 5
+
+    class Call,User user
+    class SThink,SWrite,SSolve,SExpress,SReview,Skills skill
+    class O1,O2,O3,O4,O5,O6,O7,Orchestrator orch
+    class Think,Write,Solve,Express,Review,Specialists spec
+    class Save,MemUpdate,Storage store
+    class GlobT,ReadT,ApplyT,WritingDetail detail
+    class ReviewGate detail

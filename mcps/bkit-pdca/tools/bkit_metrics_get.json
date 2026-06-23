@@ -1,0 +1,14 @@
+{
+  "name": "bkit_metrics_get",
+  "description": "Get latest quality metrics (M1-M10). Optionally filter by feature.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Filter metrics for a specific feature."
+      }
+    },
+    "additionalProperties": false
+  }
+}

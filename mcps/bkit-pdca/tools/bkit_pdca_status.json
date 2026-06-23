@@ -1,0 +1,14 @@
+{
+  "name": "bkit_pdca_status",
+  "description": "Read current PDCA status. Optionally filter by feature name for detail.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "feature": {
+        "type": "string",
+        "description": "Feature name to query. Omit for full summary."
+      }
+    },
+    "additionalProperties": false
+  }
+}

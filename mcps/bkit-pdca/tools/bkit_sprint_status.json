@@ -1,0 +1,14 @@
+{
+  "name": "bkit_sprint_status",
+  "description": "Read current Sprint status. Optionally filter by sprint id for detail.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "sprintId": {
+        "type": "string",
+        "description": "Sprint id (kebab-case). Omit for full summary."
+      }
+    },
+    "additionalProperties": false
+  }
+}
