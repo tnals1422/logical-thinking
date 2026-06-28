@@ -75,5 +75,5 @@ Orchestrator: **Brief → Spec → Full Report Read → Express Package**
 
 ## 관련
 - `/struct-write` + `split-1-5` → Orchestrator 자동 package (Phase 5)
-- 템플릿: `struct-docs/templates/express-*.md`
+- 템플릿: `struct-docs/templates/express/*.md`
 - 전체 흐름: [workflow.mmd](workflow.mmd)

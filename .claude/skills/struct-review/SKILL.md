@@ -50,9 +50,11 @@ auto-regenerate: true | false   (기본: mode에 따라 Orchestrator 판단)
 - **write 기본**: `both` (consumption + deliverable-quality); prior 없으면 `deliverable-quality`
 - **solve/express**: `deliverable-quality`
 - **think**: `thinking-compliance`
-- Deliverable DT1(건의 누락 등) → `force_rework` 우선
+- Deliverable DT1(건의 누락·**logicSectionsFilled fail** 등) → `force_rework` 우선
+- D7 Logic Pattern Embedding — `(logic: …)` 단계 누락·미채움 시 DT1, 재생성 `W2 draft`
+- **DT-Submission** (`submissionTarget: true`) — ST1~ST6 · `submissionReady` pass/fail; ST3/ST4 fail → `W4 external-face`; express 트리거는 `submissionReady: pass` 후
 - `source-quality` / `deliverable+source` — S1~S5, ST1 무출처 (Phase 6)
-- 항상 **Regeneration Directives** + Review Data JSON (`deliverableQuality`, `deliverableTiers`)
+- 항상 **Regeneration Directives** + Review Data JSON (`deliverableQuality`, `submissionReady`, `submissionTiers`, `deliverableTiers`)
 - 저장: `struct-docs/05-reviewing/`
 
 ## Fallback

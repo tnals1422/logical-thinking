@@ -86,41 +86,48 @@ flowchart TD
     Write -.->|Review Gate| ReviewGate
     Solve -.->|Review Gate| ReviewGate
     Express -.->|Review Gate| ReviewGate
-    ReviewGate["Review Gate<br>Fidelity + Deliverable DT1~3"] --> Review
+    ReviewGate["Review Gate<br>Fidelity + DT1~3<br>+ DT-Submission"] --> Review
     Review --> Save
-    Review -.->|pass + split-1-5| ExpressPkg
+    Review -.->|submissionReady pass<br>+ split-1-5| ExpressPkg
     ExpressPkg["Express Package<br>Executive Brief 1:5"] --> Express
 
-    subgraph ReviewDetail["Review: Phase 4"]
+    subgraph ReviewDetail["Review: Phase 4 + DT-Submission"]
         direction LR
         RType["Verification Type<br>both / deliverable-quality"]
-        RDel["Deliverable Quality<br>F1~F4 · DT1 건의"]
-        RFix["Regeneration Directives<br>W1/W2/W3 target"]
+        RDel["Deliverable Quality<br>F1~F4 · DT1 · D7"]
+        RSub["DT-Submission<br>ST1~ST6 · submissionReady"]
+        RFix["Regeneration Directives<br>W1/W2/W3/W4"]
     end
 
     Review --> RType
     RType --> RDel
-    RDel --> RFix
+    RDel --> RSub
+    RSub --> RFix
     RFix --> Save
 
     Save --> MemUpdate
     MemUpdate --> Call
 
-    subgraph WritingDetail["Writing: Phase 3 Pipeline"]
+    subgraph WritingDetail["Writing: Phase 3 + W4 Pipeline"]
         direction LR
-        SpecW["Deliverable Spec<br>+ writingStages"]
+        SpecW["Deliverable Spec<br>+ writingStages<br>+ submissionTarget"]
         W1["W1 Skeleton<br>골격 + Level1 매핑"]
         W2["W2 Draft<br>문장·표·논리패턴"]
         W3["W3 Audience Pass<br>Brief.audience 조율"]
-        FinalW["MECE + Critique<br>audience-revised 저장"]
+        W4["W4 External Face<br>ST1~ST6 · Working 제거"]
+        FinalW["submission-ready 저장<br>submissionTarget:true"]
+        FinalWorking["audience-revised 저장<br>submissionTarget:false"]
     end
 
     Write --> SpecW
     SpecW --> W1
     W1 --> W2
     W2 --> W3
-    W3 --> FinalW
+    W3 --> W4
+    W4 --> FinalW
+    W3 --> FinalWorking
     FinalW --> Save
+    FinalWorking --> Save
 
     classDef user fill:#e3f2fd,stroke:#1976d2
     classDef skill fill:#f3e5f5,stroke:#7b1fa2

@@ -70,7 +70,7 @@ status: draft-for-review
 - 검증 포인트: 산출물에 규칙 수행 흔적이 명확히 기록되었는지, prior 소비가 충실했는지
 
 **치트시트**: `think.md`, `write.md`, `solve.md`, `express.md` (템플릿 선택 포함)
-- 템플릿 상세: `struct-docs/templates/README.md` (영문 파일명: report-default, iaej-pattern, structure-event-response-pattern 등)
+- 템플릿 상세: `struct-docs/templates/README.md` (scqa-pattern, iaej-pattern, incident-causal-pattern 등)
 - **워크플로우 다이어그램**: [workflow.mmd](workflow.mmd)
 
 ---
@@ -332,7 +332,7 @@ status: draft-for-review
 ## 공통 패턴 & 원칙 (모든 시나리오에 적용)
 
 ### Prior Reuse 원칙 (재사용 vs 독립)
-- Writing: coreClaim/Level1을 **Answer의 기반**으로 적극 재사용 (Pyramid Consumption). 템플릿은 `struct-docs/templates/` (report-default.md 등)에서 선택.
+- Writing: coreClaim/Level1을 **Answer의 기반**으로 적극 재사용 (Pyramid Consumption). 논리 패턴은 deliverable `(logic: …)` 섹션에 임베드.
 - Solve: Prior를 **문제 framing과 가설 생성 품질** 향상에만 사용 (직접 주장 이식 금지)
 - Express: coreClaim = 핵심 메시지, Level1 = 슬라이드/근거 단위로 매핑
 - Standalone Think: Prior는 참고 수준 (강제 아님)

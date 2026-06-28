@@ -2,7 +2,7 @@
 
 Struct Deliverable System 고도화의 **산출물 축(유형 템플릿)** 설계·구현 참고용.
 
-> 에이전트 런타임 기본 참조는 `struct-docs/templates/deliverable-*.md`이다.  
+> 에이전트 런타임 기본 참조는 `struct-docs/templates/deliverables/*.md`이다.  
 > 본 폴더는 설계·gold example·항목부호 규칙 참고용.
 
 ## 텍스트 가이드

@@ -68,8 +68,10 @@ Full Report (struct-write)
 
 **필수 입력**: Context `## Full Report Source` — Orchestrator가 write 산출물 경로·Read 내용 주입.
 
+**제출본 게이트** (post-write-auto): `fullReportSource` frontmatter `submissionReady: true` · `draftStage: submission-ready` 확인. 미달 시 express **중단** — Orchestrator가 W4 재생성·review 후 재시도. `submissionTarget: false` Working본은 명시 `user-explicit` 트리거만.
+
 1. **Read** `fullReportSource` 파일 전체 (또는 주입된 본문)
-2. **Read** 해당 express 템플릿 (`struct-docs/templates/express-*.md`)
+2. **Read** 해당 express 템플릿 (`struct-docs/templates/express/*.md`)
 3. Full Report에서 추출: `reportPurpose`, `coreClaim`, 건의/결론, §2~§4 요지, 첨부·표 목록
 4. **1:5 분량 규칙**: Executive Brief bullet·문단 수 ≈ Full Report의 **20%**; 세부·근거는 Full Report 링크만
 5. **링크**: 모든 요약본에 `[상세보고]({fullReportPath})` 상대 경로 사용

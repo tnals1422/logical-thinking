@@ -1,9 +1,10 @@
 ---
-tags: [struct, template, objective-policy]
-pattern: objective-policy
+tags: [struct, template, logic-pattern]
+pattern: objective-policy-pattern
 name: "Objective-Policy (목적-방침)"
-useWhen: "행동 계획, 진행 방침, 제안 사항을 '왜(목적) + 어떻게(방침)' 쌍으로 명확하게 정리할 때. 모호한 '해야 할 일' 목록을 목적 중심으로 재구성할 때 유용."
-outputStyle: "번호 매긴 항목 내부에 '목적: ... / 방침: ...' 구조. 매우 간결하고 실행 중심."
+useWhen: "추진계획·회의 안건·행사 프로그램. '목적 + 방침' 쌍으로 실행 항목 정리. policy §4, meeting §3.C, event A.3 필수."
+outputStyle: "번호 항목마다 **목적** / **방침** 2줄 쌍. deliverable 임베드 시 (n) 형식 유지."
+scope: standalone | section-embed
 ---
 
 # {문서 제목}

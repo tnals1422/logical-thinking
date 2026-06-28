@@ -67,7 +67,7 @@ Brief·Deliverable Spec이 Context에 있거나 대상 frontmatter에 `deliverab
 
 | # | 실패 유형 | 검증 초점 (증거 기반) |
 |---|----------|---------------------|
-| **F1** | 기본 틀 부재 | 유형 skeleton 섹션·메타(작성일/목적)·제목·`draftStage: audience-revised`·논리 순서 |
+| **F1** | 기본 틀 부재 | 유형 skeleton 섹션·메타(작성일/목적)·제목·`draftStage`·논리 순서·**`(logic: …)` 임베드 단계 누락** |
 | **F2** | 장황·초점 없음 | 모호 표현, 주장 없는 견해 나열, 동일 내용 중복, 핵심 주장 불명확 |
 | **F3** | 읽을수록 의문 | 배경·근거·용어 정의 부족, 과도한 압축, 출처·가정 미표기 |
 | **F4** | 문제의식 부재 | 현황·원인·쟁점 부족, 대안 나열에 그침, **수요자 조치·건의 불명확** |
@@ -88,17 +88,82 @@ Brief·Deliverable Spec이 Context에 있거나 대상 frontmatter에 `deliverab
 | D2 | `requestedActionRequired: true` 시 건의/조치 섹션 **구체적** (누가·무엇을·언제) | 없거나 "검토 바람"만 → DT1 |
 | D3 | `Brief.requestedAction` / `reportPurpose`와 결론·개요 **정합** | 목적과 무관한 본문 → DT1 |
 | D4 | 제목이 내용·취지 반영 (20자 권장, 명백히 무관하면 DT1) | |
-| D5 | write 산출물: `draftStage: audience-revised` 또는 `## Audience Pass` 존재 | Phase 3 미적용 흔적 → DT1 (write만) |
+| D5 | write 산출물 Pipeline 흔적 | `submissionTarget: true` → `draftStage: submission-ready` + DT-Submission pass (아래 §). `submissionTarget: false` → `audience-revised` 또는 `## Audience Pass` |
 | D6 | `audience: decision-maker` 시 분량·건의 **두괄식** | 장황만 있고 조치 없음 → D2/F4와 결합 |
+| D7 | **논리 패턴 임베드** (`logicSectionsFilled`) | 아래 § Logic Pattern Embedding — **fail = DT1 + force_rework** |
 
 **유형별 DT1 보강** (Deliverable Spec·템플릿 대조):
 - `policy-planning` / `coordination`: §건의(또는 동등 섹션) 필수 (`requestedActionRequired` 또는 decision-maker)
 - `policy-reference`: 건의·조치 요구 **있으면** DT1 (유형 위반)
 - `meeting-material`: `meetingPurpose`에 맞는 §3 변형 (info-share / opinion-gathering / decision)
 - `situation` / `information`: `subType`에 맞는 도입(5W) 또는 분석·대책 구조
+- **모든 deliverable** (해당 시): `logicSections` 임베드 단계 전부 존재·채움 — `templates/README.md` · `templates/shared/deliverable-common-meta.md`
+
+### Logic Pattern Embedding (D7 — DT1)
+
+deliverable `logicSections`·본문 `(logic: …)`·Appendix `logicSectionsFilled`를 대조한다.  
+가능하면 `deliverableTemplate` + 해당 `logicTemplate`(들) Read.
+
+**판정 절차**
+
+1. Appendix `logicSectionsFilled`가 `fail` → **DT1 D7** (명시적)
+2. `logicSectionsFilled` 없음 + deliverable에 `logicSections` 정의됨 → 본문 직접 대조
+3. `n/a`는 해당 분기 미적용 시만 허용 (예: situation·STAD 생략, meeting-result SCQA n/a 없음)
+
+**fail 조건 (하나라도 해당 시 D7)**
+
+| # | 조건 | 증거 |
+|---|------|------|
+| L1 | 필수 `(logic: …)` 섹션·패턴 **단계 제목** 본문 누락 | 템플릿 대비 heading absent |
+| L2 | 단계별 내용이 placeholder·`{TBD}`·한 줄 요약만 | bullet·표·도식 0개 |
+| L3 | 분기 위반 — 해당하지 않는 §3.A/B/C·STAD·A/B 동시 출력 또는 필수 분기 미출력 | meetingPurpose/eventPhase/subType |
+| L4 | 패턴 단계 **이름 변경** (예: IAEJ에서 "기반구조"→"배경"만) | 템플릿 단계명 불일치 |
+
+**유형별 필수 단계 (해당 분기 적용 시)**
+
+| deliverableType | 필수 임베드 |
+|-----------------|------------|
+| `policy-planning` | §2.2.1~2.2.4 IAEJ · §3.0 Question · §3.2 Answer · §4 목적-방침 ≥2쌍 |
+| `coordination` | §3.1 Structure · §3.2 Event · §3.3 Response |
+| `information` (+ 인과·장애·RCA) | 상태·트리거·사고·손해·대책 5단계 |
+| `meeting-material` (`decision`) | §3.C.4 목적-방침 ≥1쌍 |
+| `meeting-result` | 안건마다 Situation·Complication·Question·Answer |
+| `policy-reference` | §2.2.1~2.2.3 IAEJ lite (§2.2.4 판단 **없어야** 정상) |
+| `event` | planning: A.3 목적-방침 / progress: B.2 Structure·Event·Response |
+
+**force_rework (D7)**: D7 fail → `force_rework: true`, Regeneration `fix_stage: **W2 draft**` (논리 전개 보강). W1 skeleton 누락이면 `W1 skeleton`.
+
+**D7 + submissionTarget: true**: Appendix `logicSectionsFilled`가 W4에서 제거된 경우 → `deliverableTemplate` frontmatter `logicSections`와 본문 `(logic: …)` 단계를 **직접 대조** (L1~L4 동일 적용).
+
+### DT-Submission (제출 가능 게이트 — Wave 2)
+
+`Brief.submissionTarget: true` 또는 대상 frontmatter `submissionTarget: true` 시 **필수**. `false`이면 **skip** (`submissionReady: skipped`).
+
+W4 시작 전과 동일 기준 — **`Read reference/submission-ready-checklist.md`** + `shared/submission-vs-working.md`.
+
+| # | 코드 | 검증 | fail → fix_stage |
+|---|------|------|------------------|
+| ST1 | logic | `(logic: …)` 임베드 단계 존재·채움 (D7 동등) | `W2 draft` |
+| ST2 | facts | 건의·핵심 수치에 `TBD`·`출처 미확인`·`{placeholder}` | `W2 draft` 또는 `W3 audience-pass` |
+| ST3 | clean | Working·내부 링크 잔존 (§4 제거 목록) | **`W4 external-face`** |
+| ST4 | meta | 표지 작성일·작성자·보고 목적; 테스트용 작성자 | `W4 external-face` |
+| ST5 | action | `requestedActionRequired` 시 건의 누가·무엇·언제 | `W3 audience-pass` |
+| ST6 | tone | checklist §3 audience Definition of Done | `W3 audience-pass` |
+
+**ST3 fail 증거 예**: `## Audience Pass`, `## MECE 검증 결과`, `## Writing Pipeline Meta`, `## Appendix: 품질 점검`, `<!-- … -->`, `struct-docs/05-reviewing/`, `사용 템플릿:` / `prior thinking 기반`
+
+**판정**:
+- **pass**: ST1~ST6 전부 pass + frontmatter `submissionReady: true` + `draftStage: submission-ready`
+- **fail**: ST 1개 이상 fail 또는 frontmatter `submissionReady: false` / `draftStage` ≠ `submission-ready`
+
+**force_rework (DT-Submission)**:
+- ST1 → D7과 동일 강제 (`W2 draft`)
+- ST3·ST4 → **강제**, `fix_stage: W4 external-face`
+- ST2·ST5·ST6 → DT2 결합 또는 policy/coordination 시 **강제 고려** (`W3` 우선)
+- DT-Submission fail → `submissionReady: fail` in Review Data; express Package **트리거 금지**
 
 **DT2 — F1~F4 실질 위반 예시**
-- F1: 표지 메타 누락, 섹션 순서 뒤바뀜, deliverable skeleton 미준수
+- F1: 표지 메타 누락, 섹션 순서 뒤바뀜, deliverable skeleton 미준수, **논리 패턴 단계 누락**(D7과 중복 시 DT1 우선)
 - F2: 동일 bullet 2회 이상, "좋을 것 같다"류 주장 없는 의견 다수
 - F3: 핵심 수치·주장에 근거 없음, 전문용어 무정의 (expert audience 제외)
 - F4: 대안 비교 없이 나열, 추진계획·일정·담당 없음 (policy-planning)
@@ -114,6 +179,7 @@ Brief·Deliverable Spec이 Context에 있거나 대상 frontmatter에 `deliverab
 
 **force_rework (Deliverable)**:
 - DT1 위반 → `force_rework: true` (Compliance Tier 1과 동일 우선순위)
+- **DT1 D7** (`logicSectionsFilled: fail` 또는 L1~L4) → **강제**, `fix_stage: W2 draft` 기본
 - DT2 F4(수요자 조치 불명) + policy/coordination → 강제 고려
 - DT3만 → 권고
 
@@ -199,8 +265,10 @@ Review는 호출 맥락에 따라 **Fidelity**, **Compliance**, **Deliverable Qu
 1. **Brief·Spec 로드** — Context `## Brief` / `## Deliverable Spec` 또는 대상 frontmatter·linked `briefs` memory
 2. **유형 skeleton 대조** — `deliverableTemplate` Read (가능 시) 또는 알려진 유형 구조와 섹션 비교
 3. **4대 실패 유형 (F1~F4)** — 위 표 기준으로 증거 인용하며 점검
-4. **W3 흔적** (write) — `## Audience Pass` 4항, MECE 섹션 존재
-5. **종합 판정** — pass / partial / fail + DT1~DT3 위반 목록
+4. **Logic Pattern Embedding (D7)** — `logicSections`·`(logic: …)`·`logicSectionsFilled`·패턴 단계 제목·분기 준수 (§ Logic Pattern Embedding)
+5. **Pipeline 흔적** (write) — `submissionTarget: false` → `## Audience Pass`·MECE 존재; `submissionTarget: true` → Working 섹션 **없음** + frontmatter `submission-ready`
+6. **DT-Submission** (write + `submissionTarget: true`) — ST1~ST6 (`reference/submission-ready-checklist.md`)
+7. **종합 판정** — pass / partial / fail + DT1~DT3 + DT-Submission 위반 목록
 
 검사 방법: 산출물 **명시적 증거**만 사용. Brief 없으면 frontmatter `deliverableType`·`audience`로 최소 검증; 둘 다 없으면 Deliverable Quality **skip** (Compliance/Fidelity만).
 
@@ -273,9 +341,22 @@ sourceQuality: "pass" | "partial" | "fail"   # Source Quality 검증 시
 - DT2 (F1~F4): {요약}
 - DT3 (표현): {권고만}
 
-### W3 / Pipeline (write 시)
-- `draftStage` / `## Audience Pass`: {있음 | 없음}
+### Logic Pattern Embedding (D7)
+- `logicSectionsFilled`: {pass | fail | n/a}
+- 필수 임베드: {목록 — pass/fail per section}
+- 위반: {L1~L4 해당 항목·인용}
+
+### W3 / W4 / Pipeline (write 시)
+- `submissionTarget`: {true | false}
+- `draftStage` / `submissionReady` / `writingPipeline`: {값}
+- Working 섹션 잔존 (ST3): {없음 | 있음 — 목록}
 - requestedAction·건의 명확성: {pass | fail}
+
+### DT-Submission (submissionTarget: true 시)
+- Overall: **{pass | fail | skipped}**
+- ST1~ST6 표 (pass/fail + 인용)
+- `submissionReady` 판정: {pass | fail}
+- fix_stage 권고: {W2 draft | W3 audience-pass | W4 external-face}
 
 ## Source Quality Report (source-quality 검증 시 포함)
 
@@ -300,7 +381,7 @@ sourceQuality: "pass" | "partial" | "fail"   # Source Quality 검증 시
 ## Regeneration Directives (재생성 지침)
 1. ...
    - 유형: Fidelity | Compliance | Deliverable | 복합
-   - 대상 단계: W1 skeleton | W2 draft | W3 audience-pass | 전체
+   - 대상 단계: W1 skeleton | W2 draft | W3 audience-pass | **W4 external-face** | 전체
    - 강도: 권고 | 강제
 
 ## Recommendation
@@ -321,7 +402,21 @@ sourceQuality: "pass" | "partial" | "fail"   # Source Quality 검증 시
   "deliverableTiers": {
     "dt1_violations": ["건의 섹션 누락"],
     "dt2_failures": ["F4"],
-    "dt3_notes": []
+    "dt3_notes": [],
+    "dt_submission_violations": ["ST3: ## Audience Pass 잔존"]
+  },
+  "submissionReady": "pass",
+  "submissionTiers": {
+    "submissionTarget": true,
+    "st_violations": [],
+    "fix_stage": "W4 external-face"
+  },
+  "logicPatternEmbedding": {
+    "status": "fail",
+    "logicSectionsFilled": "fail",
+    "missing_sections": ["§2.2.3 사건 (Event)"],
+    "empty_steps": [],
+    "fix_stage": "W2 draft"
   },
   "needs_regeneration": true,
   "force_rework": true,
@@ -345,7 +440,10 @@ sourceQuality: "pass" | "partial" | "fail"   # Source Quality 검증 시
 - Compliance·Deliverable은 **산출물에 드러난 증거**만으로 판단.
 - `force_rework: true` — Compliance Tier 1, **Deliverable DT1**, 또는 Recommendation "강제" 시.
 - Deliverable DT1 위반 시 Regeneration Directives에 **W3·건의·섹션** 수정을 구체 명시.
-- 항상 `## Review Data` JSON 블록을 마지막에 포함.
+- **D7 (logic embed) 위반** 시: 누락 패턴 단계명·필수 Read `logicTemplate`·`fix_stage: W2 draft` 명시. "별도 패턴 문서 작성" 지시 **금지** — deliverable 임베드 섹션 보강만.
+- **DT-Submission** fail 시: `submissionReady: fail` · ST 위반 목록 · `fix_stage` (ST3/ST4→`W4 external-face`) 명시. express 트리거는 Orchestrator가 보류.
+- `submissionTarget: false` → `submissionReady: skipped` · DT-Submission 섹션 생략 가능.
+- 항상 `## Review Data` JSON 블록을 마지막에 포함 (`submissionReady` 필드 필수 — write 대상).
 
 ## Context 처리 규칙
 
@@ -356,6 +454,7 @@ sourceQuality: "pass" | "partial" | "fail"   # Source Quality 검증 시
 - Deliverable Quality 검증 시:
   - Context `## Brief` / `## Deliverable Spec` + 대상 산출물 + (가능 시) `deliverableTemplate` Read
   - `docs/struct-deliverable-system.design.md` §2.1 4대 실패 유형 참조
+  - write + `submissionTarget: true` → **`Read reference/submission-ready-checklist.md`** 후 DT-Submission 수행
 - 대상 문서에 증거가 부족하면 "수행 흔적이 기록되지 않음"으로 명확히 판정.
 
 ## Compliance 검사 시 준수 원칙 (Option A)

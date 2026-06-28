@@ -87,6 +87,20 @@
   "previousAnalysis": [],
   "previousReviews": [
     {
+      "id": "20260628T170000",
+      "timestamp": "2026-06-28T17:00:00.000Z",
+      "target": "/Users/sumin/Downloads/SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
+      "source": null,
+      "verification": "deliverable-quality+source-quality",
+      "fidelity": "skip",
+      "deliverableQuality": "pass",
+      "sourceQuality": "pass",
+      "needs_regeneration": false,
+      "force_rework": false,
+      "recommendation": "Accept",
+      "savedTo": "struct-docs/05-reviewing/20260628-skba-edgepc-db-rca-review.md"
+    },
+    {
       "id": "20260628T140000",
       "timestamp": "2026-06-28T14:00:00.000Z",
       "target": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md",
@@ -119,6 +133,25 @@
   "previousResearch": [],
   "briefs": [
     {
+      "id": "20260628T180000",
+      "timestamp": "2026-06-28T18:00:00.000Z",
+      "reportPurpose": "SKBA 12라인 EdgePC DB 연결 고갈 최종 장애보고서 (PDF 포렌식 분석 기반)",
+      "audience": "expert",
+      "deliverableType": "information",
+      "logicPattern": "state-trigger-accident-damage-pattern",
+      "requestedAction": "wait_timeout=600 즉시 적용, keepalive-time=120s 배포, 전 사이트 표준화",
+      "summaryDetailRatio": "detail-only",
+      "command": "write",
+      "linkedDocument": "struct-docs/02-writing/20260628-skba-edgepc-db-incident-report-final.md",
+      "sourceDocument": "/Users/sumin/Downloads/SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
+      "reviewSource": "struct-docs/05-reviewing/20260628-skba-edgepc-db-rca-review.md",
+      "expressPackage": [
+        "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-executive-brief.md",
+        "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-slide-deck.md",
+        "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-attachments-index.md"
+      ]
+    },
+    {
       "id": "20260628T120000",
       "timestamp": "2026-06-28T12:00:00.000Z",
       "reportPurpose": "2026 월드컵 32강 탈락 원인 분석 및 국가대표 운영·육성 체계 개선안 제안",
@@ -132,6 +165,59 @@
     }
   ],
   "previousDocuments": [
+    {
+      "id": "20260628T190000",
+      "timestamp": "2026-06-28T19:00:00.000Z",
+      "type": "executive-brief",
+      "title": "SKBA EdgePC DB RCA (Executive Brief)",
+      "deliverableType": "information",
+      "audience": "decision-maker",
+      "linkedFullReport": "struct-docs/02-writing/20260628-skba-edgepc-db-rca-report.md",
+      "packageRole": "executive-brief",
+      "savedTo": "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-executive-brief.md"
+    },
+    {
+      "id": "20260628T190001",
+      "timestamp": "2026-06-28T19:00:01.000Z",
+      "type": "slide",
+      "title": "SKBA EdgePC DB RCA (Slide Deck)",
+      "deliverableType": "information",
+      "audience": "expert",
+      "linkedFullReport": "struct-docs/02-writing/20260628-skba-edgepc-db-rca-report.md",
+      "packageRole": "meeting-slide-deck",
+      "savedTo": "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-slide-deck.md"
+    },
+    {
+      "id": "20260628T190002",
+      "timestamp": "2026-06-28T19:00:02.000Z",
+      "type": "attachments-index",
+      "title": "SKBA EdgePC DB RCA 패키지 첨부목차",
+      "linkedFullReport": "struct-docs/02-writing/20260628-skba-edgepc-db-rca-report.md",
+      "packageRole": "attachments-index",
+      "savedTo": "struct-docs/04-expressing/20260628-skba-edgepc-db-rca-attachments-index.md"
+    },
+    {
+      "id": "20260628T200000",
+      "timestamp": "2026-06-28T20:00:00.000Z",
+      "type": "incident-report",
+      "title": "SKBA 12라인 EdgePC DB 연결 고갈 최종 장애보고서",
+      "deliverableType": "information",
+      "audience": "expert",
+      "briefId": "20260628T180000",
+      "sourceDocument": "/Users/sumin/Downloads/SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
+      "savedTo": "struct-docs/02-writing/20260628-skba-edgepc-db-incident-report-final.md"
+    },
+    {
+      "id": "20260628T180001",
+      "timestamp": "2026-06-28T18:00:01.000Z",
+      "type": "report",
+      "title": "SKBA 12라인 EdgePC DB 연결 고갈 RCA (압축본)",
+      "deliverableType": "information",
+      "audience": "expert",
+      "briefId": "20260628T180000",
+      "savedTo": "struct-docs/02-writing/20260628-skba-edgepc-db-rca-report.md",
+      "supersededBy": "struct-docs/02-writing/20260628-skba-edgepc-db-incident-report-final.md"
+    },
     {
       "id": "20260628T120001",
       "timestamp": "2026-06-28T12:00:01.000Z",
@@ -193,7 +279,7 @@
   ],
   "maxItemsPerArray": 20,
   "userPreferences": {
-    "reportTemplate": "report-default",
+    "reportTemplate": "scqa-pattern",
     "preferredFormat": "markdown",
     "defaultAudience": "expert"
   }

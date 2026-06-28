@@ -36,7 +36,8 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 - **세 가지 검증 영역**:
   - **Fidelity**: prior thinking 소비 충실도
   - **Compliance**: Minto 핵심 규칙 증거 감사
-  - **Deliverable Quality** (Phase 4): Brief·유형·수요자 조치·W3 흔적
+  - **Deliverable Quality** (Phase 4): Brief·유형·수요자 조치·Pipeline 흔적
+- **DT-Submission** (Wave 2): `submissionTarget: true` 시 ST1~ST6 · `submissionReady` 게이트
 - Compliance 범위: thinking (Non-negotiables/MECE/Critique), writing (Pyramid Consumption)
 - 증거 기반 감사 (산출물에 기록된 흔적을 검사, 내부 재수행 금지)
 - **Compliance Strictness (A)** + **Deliverable Tier (Phase 4)**:
@@ -48,12 +49,23 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 
 | # | 유형 | 증상 예 |
 |---|------|--------|
-| F1 | 기본 틀 부재 | 메타·섹션·제목·`audience-revised` 누락 |
+| F1 | 기본 틀 부재 | 메타·섹션·제목·`draftStage` 누락 |
 | F2 | 장황·초점 없음 | 중복·모호 표현·주장 없는 의견 |
 | F3 | 읽을수록 의문 | 배경·근거·용어·출처 부족 |
 | F4 | 문제의식 부재 | 현황·원인 부족, **수요자 조치 불명** |
 
-**DT1 강제 예**: 정책기획인데 건의 없음 · `requestedAction` 미충족 · policy-reference에 건의 있음
+**DT1 강제 예**: 정책기획인데 건의 없음 · `requestedAction` 미충족 · policy-reference에 건의 있음 · **`logicSectionsFilled: fail`** (D7) · **`submissionReady: fail`** (DT-Submission — Working 잔존·메타 미달)
+
+**DT-Submission (ST1~ST6)** — `submissionTarget: true` write 전용. 상세: `reference/submission-ready-checklist.md`
+
+| ST | 항목 | fail 시 fix_stage |
+|----|------|------------------|
+| ST1 | logic 임베드 (D7) | W2 draft |
+| ST2 | TBD·출처 미확인 | W2/W3 |
+| ST3 | Working·내부 링크 잔존 | **W4 external-face** |
+| ST4 | 표지 메타 | W4 |
+| ST5 | 수요자 조치 | W3 |
+| ST6 | audience 톤 | W3 |
 - 항상 **Regeneration Directives** 생성 + 강제/권고 구분
 - Orchestrator가 단계 완료 게이트를 제어하고 재생성 루프를 결정 (강제 시 우선)
 
@@ -69,8 +81,11 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 
 **예시 흐름**:
 1. `/struct-think` → review (`thinking-compliance`)
-2. `/struct-write` (Brief·W1~W3) → review (`both`)
+2. `/struct-write` (Brief·W1~W4) → review (`both` + DT-Submission)
 3. DT1(건의 누락) → W3 재생성 또는 write 재호출
+4. DT1 D7(logic embed fail) → **W2 draft** 보강 후 write 재호출
+5. DT-Submission fail (ST3 Working 잔존) → **W4 external-face** 후 review 재실행
+6. `submissionReady: pass` 후 → express Package (split-1-5)
 
 ## 예시
 ```
@@ -90,9 +105,9 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 ## 출력 주요 섹션
 - Fidelity Summary (해당 시)
 - Compliance Report (해당 시)
-- **Deliverable Quality Report** — F1~F4 표 · DT1~DT3 · W3/Audience Pass
-- 주요 이슈 · Regeneration Directives (`fix_stage`: W1/W2/W3)
-- Recommendation · Review Data (`deliverableQuality`, `deliverableTiers`)
+- **Deliverable Quality Report** — F1~F4 · DT1~DT3 · **D7** · **DT-Submission (ST1~ST6)**
+- 주요 이슈 · Regeneration Directives (`fix_stage`: W1/W2/W3/**W4**)
+- Recommendation · Review Data (`deliverableQuality`, `submissionReady`, `submissionTiers`, `logicPatternEmbedding`)
 
 ## 관련 흐름
 1. `/struct-think` → pyramid 생성
@@ -116,7 +131,8 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 - 자세한 기준은 `.claude/agents/review.md`의 "Compliance Strictness Model" 섹션 참조.
 
 ## Orchestrator의 force_rework 판단 (구체화)
-Orchestrator는 `force_rework` + `deliverableQuality` + DT1 + Mode를 종합한다.
+Orchestrator는 `force_rework` + `deliverableQuality` + `submissionReady` + DT1 + Mode를 종합한다.
+- `submissionReady: fail` → express Package 보류 · ST3/ST4는 W4 재호출
 - Tier 1 / **DT1** 또는 force_rework=true → 강제 우선
 - `deliverableQuality: fail` + F4(건의) → 강제 고려
 - Autonomous에서는 Tier 2 + Fidelity 영향 시에도 강제 경향

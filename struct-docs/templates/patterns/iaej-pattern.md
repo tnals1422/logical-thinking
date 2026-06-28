@@ -1,9 +1,10 @@
 ---
-tags: [struct, template, iaej]
-pattern: iaej
-name: "기반구조-행동-사건-판단 (I-A-E-J)"
-useWhen: "제안이나 미래 계획 수립 시, 계층적 분석이 필요할 때. 기반(Infrastructure)부터 시작해 행동·사건을 거쳐 판단·제안을 도출하는 구조."
-outputStyle: "4계층 구조 + 각 계층별 제언. '이런 까닭에 → ' 형태의 논리 연결 강점."
+tags: [struct, template, logic-pattern]
+pattern: iaej-pattern
+name: "IAEJ (기반구조-행동-사건-판단)"
+useWhen: "제안·정책 원인분석. 계층적 '이런 까닭에 →' 제언. policy-planning §2.2 필수 전개."
+outputStyle: "4계층 제목 고정 + 계층별 '이런 까닭에 →' 제언. deliverable 임베드 시 §2.2.1~2.2.4 제목 유지."
+scope: standalone | section-embed
 ---
 
 # {문서 제목}
@@ -69,6 +70,10 @@ outputStyle: "4계층 구조 + 각 계층별 제언. '이런 까닭에 → ' 형
 **선택 기준**
 - '무엇을 바꿔야 하는가'에 대한 계층적 제안을 만들 때 강력
 - '이런 까닭에 → ' 형태로 논리를 연결하기 좋음
+
+**deliverable 임베드**
+- `deliverable-policy-planning.md` §2.2.1~2.2.4 제목 **변경 금지**
+- §2.2.4에 '이런 까닭에 →' 최소 2개 필수
 
 **권장 시각 자료**
 IAEJ 4단계 블록 다이어그램 + 각 계층별 '이런 까닭에' 제언 목록

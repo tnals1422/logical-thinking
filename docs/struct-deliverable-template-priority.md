@@ -99,7 +99,7 @@ flowchart LR
 | **우선순위** | 1순위 — **첫 구현 템플릿** |
 | **가이드 섹션** | Ch.2 정책기획 §1~5 |
 | **골격** | 보고 개요 → 현황과 문제점 → 정책수단과 대안 → 추진계획 → 건의와 제안 |
-| **기본 논리 패턴** | `iaej-pattern` (원인·판단), 대안 섹션은 `report-default` SCQA |
+| **기본 논리 패턴** | `iaej-pattern` §2.2, `scqa-pattern` §3, `objective-policy-pattern` §4 (skeleton 임베드) |
 | **think 매핑** | coreClaim→건의 요지 / Level1→현황·대안 근거 / GPS표→대안 비교표 |
 | **Review T1** | `requestedAction`·건의 섹션 필수 (audience=decision-maker) |
 | **PDF gold** | `정책기획보고서1_청년실업 원인분석 보고.pdf`, `정책기획보고서2_OO시스템실용성제고방안.pdf` |
@@ -140,7 +140,7 @@ flowchart LR
 | **가이드 섹션** | Ch.2 조정과제 |
 | **골격** | 보고 개요 → 현황과 쟁점 → 대안분석 → 건의와 제안 → 향후 계획 |
 | **정책기획과 차이** | §2 쟁점 대비표, §3 장단점 분석표, 추진계획 축소 |
-| **기본 논리 패턴** | `structure-event-response-pattern` (쟁점·조정 맥락) |
+| **기본 논리 패턴** | `incident-causal-pattern` mode=ser §3 (쟁점·조정) |
 | **재사용** | Wave 1의 보고 개요·건의 블록 **공유** |
 | **PDF gold** | `조정과제보고서_OO사업점검결과 및 조정방향 보고.pdf` |
 
@@ -208,21 +208,22 @@ flowchart LR
 
 ---
 
-## 6. 2차원 매트릭스 (확정판)
+## 6. 2차원 매트릭스 (2026-06 개편 — skeleton 임베드)
 
-논리 패턴 = 유형 템플릿 **섹션 내부** 전개. `·` = 전용 양식(논리 패턴 미적용).
+논리 패턴 = deliverable skeleton `(logic: …)` 섹션에 **단계 제목까지 출력**. 상세: `templates/README.md`
 
-| deliverableType | report-default | iaej | SER | STAD | objective-policy |
-|-----------------|:--------------:|:----:|:---:|:----:|:----------------:|
-| policy-planning | ○ (대안) | **◎** | · | · | ○ (추진계획) |
-| situation-info | · | · | · | · | · |
-| coordination | ○ | · | **◎** | · | · |
-| meeting-material | ○ | · | · | · | **◎** |
-| meeting-result | **◎** | · | · | · | · |
-| policy-reference | · | · | · | · | · |
-| event | · | · | · | · | ○ |
+| deliverableType | scqa | iaej | incident-causal (ser/stad) | objective-policy |
+|-----------------|:----:|:----:|:--------------------------:|:----------------:|
+| policy-planning | §3 **◎** | §2.2 **◎** | · | §4 **◎** |
+| situation | · | · | · | · |
+| information | · | · | §인과 stad **◎*** | · |
+| coordination | · | · | §3 ser **◎** | §5 ○ |
+| meeting-material | · | · | §3.C.5 ser ○ | §3.C.4 **◎**† |
+| meeting-result | §2 **◎** | · | §2 ser ○ | · |
+| policy-reference | · | §2.2 lite ○ | · | · |
+| event | · | · | B.2 ser **◎**‡ | A.3 **◎**‡ |
 
-◎ = 1차 권장, ○ = 섹션별 선택
+◎ = skeleton 필수 · ○ = 선택 · \* = 인과·장애·RCA · † = decision · ‡ = phase별
 
 ---
 
@@ -246,7 +247,7 @@ flowchart LR
 
 | 상황 | 동작 |
 |------|------|
-| Brief.deliverableType 미지정 | `report-default.md` + audience=expert |
+| Brief.deliverableType 미지정 | `scqa-pattern.md` + audience=expert |
 | 유형 지정했으나 템플릿 파일 없음 | 해당 Wave 미완 안내 + **가장 가까운 구현된 유형** 제안 |
 | 상황·정보인데 policy 템플릿 오매칭 | Review T1: 제목·도입문 5W 누락으로 fail → 재라우팅 |
 

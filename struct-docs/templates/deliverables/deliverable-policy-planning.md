@@ -6,6 +6,10 @@ name: "정책기획보고서"
 useWhen: "Brief.deliverableType이 policy-planning일 때. 신규·변경 정책·전략·과제 제안 등 의사결정권자에게 건의하는 보고서."
 outputStyle: "서술형 개조식 + 표 + 시각자료. 제목 20자 이내. decision-maker 대상 시 건의 필수."
 defaultLogicPattern: iaej-pattern
+logicSections:
+  - "§2.2 iaej-pattern (필수)"
+  - "§3.0~3.3 scqa-pattern (필수)"
+  - "§4 objective-policy-pattern (필수)"
 reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 ---
 
@@ -51,14 +55,30 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 |------|------|------|------|
 | {항목} | {값} | {↑↓} | {출처} |
 
-### 2.2 원인분석
+### 2.2 원인분석 (logic: iaej-pattern — **필수 전개**)
 
-- **근본 원인**: {1차가 아닌 구조적·근본 원인}
-- **인과 구조**: {원인 → 결과 관계 — 표 또는 Mermaid}
+> **논리 흐름**: 기반구조(I) → 행동(A) → 사건(E) → 판단(J)
 
-```
-{Prior Level 1 또는 IAEJ 판단 논리를 §2.2에 매핑}
-```
+#### 2.2.1 기반구조 (Infrastructure)
+
+- {변하지 않는 제도·인프라·환경·구조}
+- {핵심 구조 요소 2~3개}
+
+#### 2.2.2 행동 (Activity)
+
+- {구조 위에서 반복·일상적으로 일어나는 활동·운영 패턴}
+
+#### 2.2.3 사건 (Event)
+
+- {행동 과정에서 발생한 문제·이슈·실패}
+- {인과 맥락 — 표 또는 Mermaid}
+
+#### 2.2.4 판단 (Judge) 및 제언
+
+- {각 계층 평가 요약}
+- **이런 까닭에 →** {기반구조 수준 개선 제언}
+- **이런 까닭에 →** {행동·운영 수준 제언}
+- **이런 까닭에 →** {사건 대응·예방 제언}
 
 ### 2.3 기존 대응 사례
 
@@ -71,7 +91,11 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 - **국내**: {사례·시사점}
 - **해외**: {사례·시사점}
 
-## 3. 정책수단과 대안
+## 3. 정책수단과 대안 (logic: scqa-pattern — **필수 전개**)
+
+### 3.0 핵심 질문 (Question)
+
+> {§2 문제를 해결하기 위한 1문장 질문}
 
 ### 3.1 정책대상과 자원
 
@@ -82,7 +106,7 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 
 **소요 자원**: 조직 { } · 인력 { } · 예산 { } · 기간 { } · 조달 가능성 { }
 
-### 3.2 정책대안
+### 3.2 정책대안 (Answer)
 
 | 대안 | 목표 적합 | 근본 해결 | 실천 가능성 | 권장 |
 |------|:--------:|:--------:|:----------:|:----:|
@@ -91,26 +115,42 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 
 **권장 대안**: {대안명} — {선정 이유 1~2문장}
 
+#### 근거 1: {제목}
+
+- {포인트 · 데이터 · 함의}
+
+#### 근거 2: {제목}
+
+- {포인트 · 데이터 · 함의}
+
 ### 3.3 예상 효과
 
 - **직접 효과**: {정량·정성}
 - **간접·파급 효과**: {부작용·리스크 포함}
 - **현재 대비 변화**: {before → after}
 
-## 4. 추진계획
+## 4. 추진계획 (logic: objective-policy-pattern — **필수 전개**)
 
-### 4.1 자원 활용 계획
+(1) **목적**: {1단계 달성 상태}
 
-- {인력·예산·조직 배치}
+    **방침**: {실행 방식·담당·제약}
 
-### 4.2 추진 일정
+(2) **목적**: {2단계 달성 상태}
+
+    **방침**: {실행 방식}
+
+(3) **목적**: {3단계 달성 상태}
+
+    **방침**: {실행 방식}
+
+### 4.1 추진 일정
 
 | 단계 | 내용 | 기한 | 담당 |
 |------|------|------|------|
 | 1 | { } | { } | { } |
 | 2 | { } | { } | { } |
 
-### 4.3 홍보·품질관리 (해당 시)
+### 4.2 홍보·품질관리 (해당 시)
 
 - **홍보**: {방법}
 - **점검·평가**: {KPI·평가 주기}
@@ -132,39 +172,33 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 
 ---
 
-## Appendix: MECE 검증 결과
+## Appendix: 품질 점검
 
 - 검증 결과: {passed / partial / failed}
-- 발견된 이슈: {없음 또는 나열}
+- logicSectionsFilled: {§2.2 IAEJ 4단계 · §3 SCQA · §4 목적-방침 — pass/fail}
 - 사용 템플릿: deliverable-policy-planning.md
-- logicPattern: {iaej-pattern 등}
+- logicPattern: iaej-pattern + scqa-pattern + objective-policy-pattern
 - prior thinking 기반: {yes / no}
 
 ---
 
 ## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
 
-### Pyramid Consumption 매핑 (prior 있을 때)
+### Pyramid Consumption
 
 | Prior | 매핑 위치 |
 |-------|----------|
-| coreClaim | 개요 인용문 + §5 건의 요지 |
-| Level 1 #1~2 | §2 현황·원인 |
-| Level 1 #3~4 | §3 대안·효과 |
-| GPS 비교표 | §3.2 대안 비교표 |
-| Critique 반론 | §3.3 리스크·§2.2 원인 보강 |
+| coreClaim | 개요 + §5 건의 |
+| Level 1 #1~2 | §2.1·§2.2 IAEJ |
+| Level 1 #3~4 | §3.2 대안·§3.3 효과 |
+| GPS 비교표 | §3.2 대안 표 |
 
-### 섹션 내부 논리 (logicPattern)
+### Review T1
 
-- §2.2 원인분석: `iaej-pattern` (기반→행동→사건→판단) 권장
-- §4 추진계획: `objective-policy-pattern` (목적-방침 쌍) 활용 가능
-
-### Review T1 체크 (deliverable-quality)
-
-- [ ] 제목이 내용·취지 포괄 (20자 이내 권장)
-- [ ] §1 목적·경위 — "왜 지금 이 보고인가" 해소
-- [ ] §5 건의 — audience=decision-maker 시 **필수**
-- [ ] 근본 원인 분석 (1차 원인만 나열 금지)
+- [ ] §2.2.1~2.2.4 **4단계 모두** 채움 + '이런 까닭에' 최소 2개
+- [ ] §3.0 Question 1문장 + §3.2 Answer 표·근거
+- [ ] §4 목적-방침 쌍 **최소 2개**
+- [ ] §5 건의 — decision-maker 시 필수
 
 ### Gold reference
 

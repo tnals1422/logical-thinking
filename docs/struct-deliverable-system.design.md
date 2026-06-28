@@ -186,7 +186,8 @@ deliverableType: policy-planning | coordination | policy-reference | situation |
 timing: urgent | normal
 requestedAction: {수요자가 해야 할 일 — 결정/승인/건의/참고만/없음}
 summaryDetailRatio: summary-only | split-1-5 | detail-only
-logicPattern: auto | report-default | iaej-pattern | structure-event-response-pattern | state-trigger-accident-damage-pattern | objective-policy-pattern
+logicPattern: auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern
+logicPatternMode: ser | stad   # incident-causal-pattern
 ```
 
 **모드별 수집**
@@ -213,7 +214,7 @@ Orchestrator Step 3 — Specialist 호출 직전.
 입력: Brief + (선택) Previous Thinking Pyramid
 출력: ## Deliverable Spec 블록
 
-1. deliverableType → 유형 템플릿 파일 선택 (struct-docs/templates/deliverable-*.md)
+1. deliverableType → 유형 템플릿 파일 선택 (`struct-docs/templates/deliverables/*.md`)
 2. logicPattern:
    - auto → 유형 + pyramid 내용 분석 후 논리 패턴 자동 선택 (기존 writing 로직)
    - 명시 시 → 해당 패턴 강제
@@ -256,20 +257,24 @@ Orchestrator Step 3 — Specialist 호출 직전.
 
 **MVP**: Wave 1 + Wave 2 (정책기획 + 상황·정보)
 
-기존 논리 패턴 템플릿(`report-default.md`, `iaej-pattern.md` 등)은 **유지** — 유형 템플릿의 섹션 **내부**에 적용.
+논리 패턴(`templates/patterns/*.md`)은 deliverable skeleton `(logic: …)` 섹션에 **임베드** — 단계 제목까지 출력.
 
-### 3.5 Writing Agent 3단계 내부화
+### 3.5 Writing Agent 4단계 내부화 (W4 External Face)
 
-참고자료 Chapter 3 3단계를 `writing.md` 실행 절차로 명시.
+참고자료 Chapter 3 3단계 + **W4 제출면 정리**. `submissionTarget: true`(기본) 시 Markdown 제출본.
 
 | 단계 | 명칭 | 내용 | 산출물 흔적 |
 |------|------|------|------------|
-| W1 | 뼈대 (Skeleton) | 유형 템플릿 골격 + prior Level 1 매핑, placeholder 채움 | `## Draft Stage: skeleton` |
-| W2 | 초안 (Draft) | 문장·표·도식 구체화, 논리 패턴 적용 | `## Draft Stage: draft` |
-| W3 | 수요자 관점 수정 (Audience Pass) | Brief.audience 기준 점검 — 장황함 제거, 건의 명확화, 용어 조절 | `## Draft Stage: audience-revised` |
+| W1 | 뼈대 (Skeleton) | 유형 템플릿 골격 + prior Level 1 매핑, placeholder 채움 | `draftStage: skeleton` |
+| W2 | 초안 (Draft) | 문장·표·도식 구체화, 논리 패턴 적용 | `draftStage: draft` |
+| W3 | 수요자 관점 수정 (Audience Pass) | Brief.audience 기준 점검 — 장황함 제거, 건의 명확화, 용어 조절 | `draftStage: audience-revised` (Working 섹션) |
+| W4 | 제출면 정리 (External Face) | ST1~ST6 · Working 제거 · 표지 메타 정리 | `draftStage: submission-ready`, `submissionReady: true` |
 
-Collaborative: W1·W2 후 사용자 확인 옵션  
-Autonomous: 3단계 연속 실행, 최종본만 저장 (stage 흔적은 frontmatter 또는 하단 메타)
+`submissionTarget: false` → W3까지만 (Working 포함).  
+체크리스트: `reference/submission-ready-checklist.md` · 구분: `shared/submission-vs-working.md`
+
+Collaborative: W1·W2·W3 후 확인; W4 제출본 미리보기  
+Autonomous: W1~W4 연속 실행; `submissionTarget: true` 시 **제출본만** 저장 (frontmatter에 stage)
 
 **수요자 관점 수정 체크리스트 (W3)**
 
@@ -280,7 +285,8 @@ Autonomous: 3단계 연속 실행, 최종본만 저장 (stage 흔적은 frontmat
 
 ### 3.6 Review Agent 확장
 
-기존 **Fidelity + Compliance**에 **Deliverable Quality** 게이트 추가.
+기존 **Fidelity + Compliance**에 **Deliverable Quality** 게이트 추가.  
+**Wave 2 DT-Submission**: `submissionTarget: true` write 산출물에 ST1~ST6 재검 · Review Data `submissionReady`. express Package는 `submissionReady: pass` 후만.
 
 #### 검증 유형 확장
 
@@ -370,8 +376,8 @@ Full Report (struct-write 산출물)
 | Phase | 내용 | 변경 대상 | 완료 기준 |
 |-------|------|----------|----------|
 | **1** | Brief 수집 + Context 주입 + Memory 스키마 | `orchestrator.md`, skills, `.struct-memory.json` 구조, `workflow.mmd` | ✅ write/solve/express 시 Brief·Deliverable Spec 주입 |
-| **2** | 유형 템플릿 (Wave 0~4, MVP=Wave 1~2) + README 매트릭스 | `struct-docs/templates/deliverable-*.md`, `templates/README.md` | ✅ MVP: policy-planning · situation-info available |
-| **3** | Writing 3단계 (W1→W2→W3) | `writing.md`, `struct-docs/usage/write.md` | audience-revised 흔적 + 수요자 체크리스트 |
+| **2** | 유형 템플릿 (Wave 0~4, MVP=Wave 1~2) + README 매트릭스 | `struct-docs/templates/deliverables/`, `templates/README.md` | ✅ MVP: policy-planning · situation-info available |
+| **3** | Writing 4단계 (W1→W2→W3→W4) | `writing.md`, `struct-docs/usage/write.md`, `submission-ready-checklist.md` | submission-ready 제출본 (Working 제거) |
 | **4** | Review Deliverable Quality | `review.md`, `struct-review/SKILL.md`, `usage/review.md` | 4대 실패 유형 Tier 1~3 검증 |
 | **5** | Express 패키지 (1:5 Brief) | `expression.md`, `orchestrator.md` 후속 트리거 | Full + Executive Brief 연계 산출 |
 | **6** | 자료 검증 | 신규 agent 또는 write 전처리 | 출처·균형·다중 출처 확인 체크리스트 |
@@ -405,13 +411,13 @@ Full Report (struct-write 산출물)
 |------|-------|
 | `docs/struct-deliverable-template-priority.md` | — | 우선순위 확정 문서 |
 | `reference/president/README.md` | — | PDF·가이드 인덱스 |
-| `struct-docs/templates/deliverable-policy-planning.md` | 2a (P0) |
-| `struct-docs/templates/deliverable-situation-info.md` | 2b (P0) |
-| `struct-docs/templates/deliverable-coordination.md` | 2c (P1) |
-| `struct-docs/templates/deliverable-meeting-material.md` | 2d (P1) |
-| `struct-docs/templates/deliverable-meeting-result.md` | 2e (P2) |
-| `struct-docs/templates/deliverable-policy-reference.md` | 2e (P2) |
-| `struct-docs/templates/deliverable-event.md` | 2f ✅ |
+| `struct-docs/templates/deliverables/deliverable-policy-planning.md` | 2a (P0) |
+| `struct-docs/templates/deliverables/deliverable-situation-info.md` | 2b (P0) |
+| `struct-docs/templates/deliverables/deliverable-coordination.md` | 2c (P1) |
+| `struct-docs/templates/deliverables/deliverable-meeting-material.md` | 2d (P1) |
+| `struct-docs/templates/deliverables/deliverable-meeting-result.md` | 2e (P2) |
+| `struct-docs/templates/deliverables/deliverable-policy-reference.md` | 2e (P2) |
+| `struct-docs/templates/deliverables/deliverable-event.md` | 2f ✅ |
 
 ### 5.3 선택 변경 (Phase 6)
 
@@ -430,7 +436,7 @@ Full Report (struct-write 산출물)
 | 템플릿 폭발 | 선택 혼란 | 1차 유형 4종 + auto logicPattern; README가 source of truth |
 | Review 과부하 | 재생성 루프 증가 | Tier로 강도 조절; Deliverable T3는 권고만 |
 | Collaborative Brief 질문 과다 | UX 저하 | 필수 3항목만 질문 (purpose, audience, type) — 나머지 추론 |
-| 기존 워크플로우 호환 | 기존 사용자 혼란 | Brief 없으면 `report-default` + audience=expert 폴백 |
+| 기존 워크플로우 호환 | 기존 사용자 혼란 | Brief 없으면 `scqa-pattern` + audience=expert 폴백 |
 | 자료 검증 무거움 | Phase 6으로 분리 | 1~5단계는 사용자 제공 자료 + 체크리스트만 |
 
 ---
@@ -453,9 +459,10 @@ Specialist 호출 시 프롬프트 구조 (Phase 1 완료 후).
 {Brief 블록 전체}
 
 ## Deliverable Spec
-deliverableTemplate: struct-docs/templates/deliverable-policy-planning.md
+deliverableTemplate: struct-docs/templates/deliverables/deliverable-policy-planning.md
 logicPattern: iaej-pattern
-writingStages: skeleton → draft → audience-revised
+writingStages: skeleton → draft → audience-revised → submission-ready
+submissionTarget: true
 summaryDetailRatio: split-1-5
 
 ## Previous Thinking Pyramid (해당 시)
@@ -563,6 +570,20 @@ summaryDetailRatio: split-1-5
 - [x] `struct-docs/usage/workflow.mmd` — WritingDetail W1~W3 서브그래프
 - [x] `struct-write/SKILL.md` — Pipeline 언급
 - [x] `Claude.md` — Phase 3 아키텍처 요약
+
+## Phase 3b — Submission-Ready (W4, 2026-06-28)
+
+- [x] `reference/submission-ready-checklist.md` — ST1~ST6 · W4 제거 목록
+- [x] `shared/submission-vs-working.md` — Submission vs Working 구분
+- [x] `writing.md` — W4 External Face · Output Requirements (제출본)
+- [x] `orchestrator.md` — `submissionTarget` · W4 writingStages
+- [x] `deliverable-brief-schema.md` — `submissionTarget` 필드
+- [x] `struct-docs/usage/write.md` · `struct-write/SKILL.md` — submission-target 옵션
+- [x] `reference/README.md` — checklist 등록
+- [x] Review DT-Submission (`submissionReady` 게이트) — Wave 2
+- [x] `review.md` — DT-Submission ST1~ST6 · Review Data `submissionReady`
+- [x] `orchestrator.md` — R4 W4 rework · express `submissionReady` 선행 게이트
+- [x] `struct-docs/usage/review.md` · `struct-review/SKILL.md` · `expression.md` 동기화
 
 ## Phase 4 체크리스트 (2026-06-28)
 

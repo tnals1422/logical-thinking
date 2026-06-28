@@ -282,7 +282,7 @@ status: draft-for-review
 - P0 Mode별 상세 행동 (S02 Collaborative/Autonomous)이 writing.md에 반영됨 (Prior 확인, Level 1 bullet 먼저, 변경 요약)
 - Pyramid Consumption 규칙 + 템플릿 선택 로직 (Glob + 내용 분석) 구현
 - Orchestrator Read + 주입 + 모드 전달 완료
-- 템플릿은 report-default + IAEJ 등 struct-docs/templates/ 에 있음 (사용자 추가 가능)
+- 템플릿은 `struct-docs/templates/` (`deliverables/` · `patterns/` · `express/` · `shared/`)에 있음 (사용자 추가 가능)
 
 ---
 

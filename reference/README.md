@@ -13,10 +13,11 @@
 | `minto-thinking-gold-examples.md` | 최고 품질(Excellent) 수준의 예시 모음 | thinking.md |
 | `deliverable-brief-schema.md` | Brief·Deliverable Spec 필드 정의, enum, memory 스키마 | orchestrator.md, writing.md, problem-solving.md, expression.md |
 | `source-validation-checklist.md` | 출처·균형·다중 출처 S1~S5, ST1~ST3, Source Validation Context | research.md, writing.md, review.md, orchestrator.md |
+| `submission-ready-checklist.md` | 제출 가능 Full Report ST1~ST6, W4 External Face 제거 목록, frontmatter 규칙 | writing.md (W4), review.md (Wave 2 DT-Submission) |
 
 ### 사용 규칙
 - 에이전트가 판단이 어려울 때 위 파일들을 `Read` 도구로 적극 참조하도록 설계되어 있습니다.
-- 이 3개 파일 외의 문서는 에이전트가 직접 읽지 않습니다.
+- 위 표에 없는 문서는 에이전트가 직접 읽지 않습니다.
 
 ## 관리 규칙 (향후 유지보수)
 
@@ -51,4 +52,4 @@
 
 대통령비서실 보고서 가이드 및 PDF 예시. 템플릿 구현 시 참고. 인덱스: `president/README.md`.
 
-**마지막 업데이트**: 2026-06-28 (deliverable-brief-schema 추가)
+**마지막 업데이트**: 2026-06-28 (submission-ready-checklist 추가)

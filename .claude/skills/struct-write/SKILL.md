@@ -32,7 +32,8 @@ event-phase: planning | progress   # event 시
 timing: urgent | normal
 requested-action: {수요자 조치 | none}
 summary-detail: summary-only | split-1-5 | detail-only
-logic-pattern: auto | report-default | iaej-pattern | ...
+submission-target: true | false   # 기본 true — false 시 W3 Working본만
+logic-pattern: auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern
 reuse-brief: true
 research-first: true | false
 
@@ -44,7 +45,7 @@ research-first: true | false
 - Collaborative(기본): purpose/audience/deliverable-type 미지정 시 Orchestrator가 사용자에게 Brief 3항목 질문.
 - Autonomous: Brief 자동 추론 + 폴백 (`audience: expert`, `deliverable-type: general`).
 - `research-first: true` 시 Orchestrator가 research 선행 → `## Source Validation` 주입 (Phase 6).
-- `use-prior: true` 시 prior thinking 강제 주입. writing agent는 Brief·Deliverable Spec 후 **W1→W2→W3** Writing Pipeline + Pyramid Consumption 적용 (Phase 3).
+- `use-prior: true` 시 prior thinking 강제 주입. writing agent는 Brief·Deliverable Spec 후 **W1→W2→W3→W4** Writing Pipeline + Pyramid Consumption 적용 (`submission-target: false` 시 W3까지).
 ```
 
 3. Orchestrator가 반환한 결과를 사용자에게 출력한다

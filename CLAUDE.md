@@ -37,9 +37,9 @@ struct-docs/
 
 **Deliverable Brief (Phase 1, 2026-06)**: Orchestrator는 struct-write/solve/express 호출 시 **Brief**(목적·수요자·유형)를 수집하고 **Deliverable Spec**(템플릿·논리패턴)을 확정한 뒤 Specialist에 주입한다. Collaborative는 필수 3항목 확인, Autonomous는 추론+폴백. 스키마: `reference/deliverable-brief-schema.md`. 설계: `docs/struct-deliverable-system.design.md`.
 
-**Writing Pipeline (Phase 3, 2026-06)**: struct-write 시 writing agent가 **W1 Skeleton → W2 Draft → W3 Audience Pass** 순으로 본문 작성. Deliverable Spec에 `writingStages` 주입. 최종본만 저장 (`draftStage: audience-revised`). 상세: `writing.md`, `struct-docs/usage/write.md`.
+**Writing Pipeline (Phase 3, 2026-06)**: struct-write 시 writing agent가 **W1 Skeleton → W2 Draft → W3 Audience Pass → W4 External Face** 순으로 본문 작성. `submissionTarget: true`(기본) 시 W4에서 Working 섹션 제거 후 제출본 저장 (`draftStage: submission-ready`, `submissionReady: true`). `submissionTarget: false` 시 W3까지만 (`audience-revised`). 상세: `writing.md`, `reference/submission-ready-checklist.md`, `struct-docs/usage/write.md`.
 
-**Deliverable Review (Phase 4, 2026-06)**: struct-review 시 **Deliverable Quality** 게이트 — Brief·유형·4대 실패 유형(F1~F4), DT1(건의·틀)·DT2·DT3. write 기본 verification: `both`. 상세: `review.md`, `struct-docs/usage/review.md`.
+**Deliverable Review (Phase 4, 2026-06)**: struct-review 시 **Deliverable Quality** 게이트 — Brief·유형·4대 실패 유형(F1~F4), DT1(건의·틀·**logicSectionsFilled**)·DT2·DT3. D7 fail 시 W2 재생성. **DT-Submission** (Wave 2): `submissionTarget: true` 시 ST1~ST6·`submissionReady`; ST3 fail → W4. express는 `submissionReady: pass` 후. write 기본 verification: `both`. 상세: `review.md`, `reference/submission-ready-checklist.md`, `struct-docs/usage/review.md`.
 
 **Express Package (Phase 5, 2026-06)**: `summary-detail: split-1-5` write + Review pass 후 **Executive Brief(1:5)**·Attachments Index·(meeting-material 시) Slide Deck. `/struct-express brief|package {경로}`. 상세: `expression.md`, `struct-docs/usage/express.md`.
 
@@ -72,7 +72,7 @@ struct-docs/
 
 ## 템플릿 및 유지보수
 
-- `struct-docs/templates/` 파일명은 영문 kebab-case만 사용 (예: `structure-event-response-pattern.md`)
+- `struct-docs/templates/` 는 `deliverables/` · `patterns/` · `express/` · `shared/` 4축 디렉터리. 파일명은 영문 kebab-case (예: `patterns/incident-causal-pattern.md`)
 - 템플릿/아키텍처 변경 시 `struct-docs/usage/*.md`, `.claude/agents/writing.md`, `templates/README.md` 동기화
 - `struct-docs/templates/README.md` 가 템플릿 선택의 source of truth (`useWhen`, pattern 키)
 - struct-docs/usage/workflow.mmd 에 전체 워크플로우 문서화
