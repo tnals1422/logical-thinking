@@ -20,15 +20,22 @@ solve 수행
 {사용자가 입력한 문제 설명 전체}
 
 ## Options
-use-prior: true | false   (기본: 자동 판단. true = prior thinking 강제 사용, false = 무시)
+use-prior: true | false
+mode: collaborative | autonomous
+purpose: {분석 목적}
+audience: decision-maker | expert | meeting-participant | reference-only
+deliverable-type: policy-planning | coordination | general | ...
+requested-action: {수요자 조치 | none}
+reuse-brief: true
+research-first: true | false
 
 ## Context (from .struct-memory.json)
 {이전 분석 결과가 있으면 포함, 없으면 "이전 컨텍스트 없음"}
 
-**참고**: 
-- `use-prior: true` 또는 `source: thinking` 전달 시 Orchestrator는 prior thinking을 강제로 주입한다.
-- Orchestrator는 relevant prior thinking이 있을 경우 `## Previous Thinking Pyramid` 블록을 주입할 수 있다.
-- problem-solving agent는 이 pyramid를 문제 구조화 및 가설 생성의 품질 기준으로 활용하는 것을 권장한다 (직접 주장 이식보다는 framing에 사용).
+**참고**:
+- Orchestrator는 solve 시 Brief를 수집·주입한다. `research-first: true` 시 research 선행 (Phase 6).
+- problem-solving agent는 Brief·Source Validation을 Problem Framing에 반영한다.
+- `use-prior: true` 시 prior를 framing 품질 기준으로 활용 (직접 주장 이식 금지).
 ```
 
 3. Orchestrator가 반환한 결과를 사용자에게 출력한다

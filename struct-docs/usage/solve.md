@@ -10,11 +10,19 @@ type: cheatsheet
 /struct-solve {문제 설명}
 ```
 
-## 모드
-- **참여형 (기본)**: "자세히 같이", "검토하면서" → framing, 가설, Root Cause, 해결안 단계별 확인 + 테이블
-- **자율형**: "빠르게" → 전체 자동 (가설 3개+ + 5 Whys + 우선순위 표) + 요약만
+## Brief (Phase 1)
 
-Orchestrator가 prior 주입 및 모드 전달을 담당합니다.
+Orchestrator가 solve 전 Brief를 수집합니다 (`audience`, `deliverable-type`, `purpose` 등).
+- `audience: decision-maker` → 액션 플랜에 수요자 조치 명시
+- `deliverable-type: coordination` → 쟁점·이해관계 분석 강화
+
+상세: `reference/deliverable-brief-schema.md`
+
+## 모드
+- **참여형 (기본)**: Brief 확인 → framing, 가설, Root Cause, 해결안 단계별 확인
+- **자율형**: Brief 추론 → 전체 자동 + 요약만
+
+Orchestrator: **Brief → Prior** 순 Context 구성.
 
 ## 언제 쓰나
 - 원인을 모르는 문제를 체계적으로 파헤치고 싶을 때

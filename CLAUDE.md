@@ -9,21 +9,23 @@
 | `/struct-think` | 아이디어를 구조화된 논리로 정리 |
 | `/struct-write` | SCQA 기반 보고서·문서 생성 |
 | `/struct-solve` | 문제를 구조화된 논리로 분석하고 해결안 도출 |
-| `/struct-express` | 발표 슬라이드, 메모, 스토리텔링으로 변환 |
-| `/struct-review` | write/solve/express 결과물의 Pyramid Consumption Fidelity 최종 검증 (게이트) |
+| `/struct-express` | 슬라이드·메모·스토리 + Express Package (1:5 Executive Brief) |
+| `/struct-review` | Fidelity + Deliverable Quality 게이트 (4대 실패 유형 DT1~DT3) |
+| `/struct-research` | 출처·균형·다중 출처 검증 (Phase 6) |
 
 ## 파일 구조
 
 ```
 .claude/
-├── skills/          # 사용자 호출 스킬 (/struct-think, /struct-write, /struct-solve, /struct-express)
-└── agents/          # 에이전트 정의 (orchestrator, thinking, writing, problem-solving, expression, review)
+├── skills/          # 사용자 호출 스킬 (struct-think/write/solve/express/review/research)
+└── agents/          # 에이전트 정의 (orchestrator, thinking, writing, problem-solving, expression, review, research)
 struct-docs/
 ├── 01-thinking/     # /struct-think 결과물
 ├── 02-writing/      # /struct-write 결과물
 ├── 03-solving/      # /struct-solve 결과물
 ├── 04-expressing/   # /struct-express 결과물
-└── 05-reviewing/    # /struct-review Fidelity 보고서 결과물
+├── 05-reviewing/    # /struct-review 결과물
+└── 06-researching/  # /struct-research Source Validation 결과물
 .struct-memory.json   # 세션 간 컨텍스트 저장
 ```
 
@@ -33,7 +35,17 @@ struct-docs/
 
 각 전문 에이전트는 Minto Thinking 로직을 내장하여 독립 실행 가능.
 
-**Thinking Reuse 개선 (2026-06)**: Orchestrator는 struct-write/solve/express 호출 시 relevant prior thinking 파일을 Read하여 구조화된 `## Previous Thinking Pyramid`를 Context에 주입한다. writing은 Pyramid Consumption 규칙으로, solve는 Problem Framing 용도로 prior를 활용한다. standalone 호출은 기존 동작 유지.
+**Deliverable Brief (Phase 1, 2026-06)**: Orchestrator는 struct-write/solve/express 호출 시 **Brief**(목적·수요자·유형)를 수집하고 **Deliverable Spec**(템플릿·논리패턴)을 확정한 뒤 Specialist에 주입한다. Collaborative는 필수 3항목 확인, Autonomous는 추론+폴백. 스키마: `reference/deliverable-brief-schema.md`. 설계: `docs/struct-deliverable-system.design.md`.
+
+**Writing Pipeline (Phase 3, 2026-06)**: struct-write 시 writing agent가 **W1 Skeleton → W2 Draft → W3 Audience Pass** 순으로 본문 작성. Deliverable Spec에 `writingStages` 주입. 최종본만 저장 (`draftStage: audience-revised`). 상세: `writing.md`, `struct-docs/usage/write.md`.
+
+**Deliverable Review (Phase 4, 2026-06)**: struct-review 시 **Deliverable Quality** 게이트 — Brief·유형·4대 실패 유형(F1~F4), DT1(건의·틀)·DT2·DT3. write 기본 verification: `both`. 상세: `review.md`, `struct-docs/usage/review.md`.
+
+**Express Package (Phase 5, 2026-06)**: `summary-detail: split-1-5` write + Review pass 후 **Executive Brief(1:5)**·Attachments Index·(meeting-material 시) Slide Deck. `/struct-express brief|package {경로}`. 상세: `expression.md`, `struct-docs/usage/express.md`.
+
+**Source Validation (Phase 6, 2026-06)**: `/struct-research` — 사용자 제공 자료의 출처·균형·다중 출처 체크리스트(S1~S5). `research-first: true` write/solve 전처리. review `source-quality`. 상세: `research.md`, `reference/source-validation-checklist.md`.
+
+**Thinking Reuse (2026-06)**: Brief·Spec 확정 후 relevant prior thinking을 Read하여 `## Previous Thinking Pyramid`를 주입. writing은 Pyramid Consumption, solve는 Problem Framing에 활용.
 
 **두 모드 운영 원칙 (참여형 vs 자율형)**
 - 사용자가 모드를 지정하지 않으면 기본은 **참여형(Collaborative)**.

@@ -11,6 +11,8 @@
 | `minto-thinking-core-checklist.md` | Minto Thinking의 Non-negotiables, 6-Step Structured Reasoning, MECE Validation, Critique Pass, Reverse Structuring 등 핵심 규칙 | thinking.md, writing.md, problem-solving.md, expression.md, orchestrator.md |
 | `minto-thinking-quality-rubric.md` | Thinking 결과물의 품질 평가 기준 (Excellent / Good / Acceptable / Poor) | thinking.md |
 | `minto-thinking-gold-examples.md` | 최고 품질(Excellent) 수준의 예시 모음 | thinking.md |
+| `deliverable-brief-schema.md` | Brief·Deliverable Spec 필드 정의, enum, memory 스키마 | orchestrator.md, writing.md, problem-solving.md, expression.md |
+| `source-validation-checklist.md` | 출처·균형·다중 출처 S1~S5, ST1~ST3, Source Validation Context | research.md, writing.md, review.md, orchestrator.md |
 
 ### 사용 규칙
 - 에이전트가 판단이 어려울 때 위 파일들을 `Read` 도구로 적극 참조하도록 설계되어 있습니다.
@@ -45,4 +47,8 @@
 
 ---
 
-**마지막 업데이트**: 2026-06-18 (에이전트 사용 파일 기준으로 정리)
+## president/ (설계·gold example — 런타임 기본 미참조)
+
+대통령비서실 보고서 가이드 및 PDF 예시. 템플릿 구현 시 참고. 인덱스: `president/README.md`.
+
+**마지막 업데이트**: 2026-06-28 (deliverable-brief-schema 추가)

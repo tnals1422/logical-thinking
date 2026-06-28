@@ -20,17 +20,31 @@ write 수행
 {사용자가 입력한 텍스트 전체}
 
 ## Options
-template: {사용자가 지정한 템플릿, 없으면 "default"}
-use-prior: true | false   (기본: 자동 판단. true = prior thinking 강제 사용, false = 무시)
+template: {논리 패턴 템플릿, 없으면 "default"}
+use-prior: true | false
+mode: collaborative | autonomous
+# Brief (Phase 1 — 미지정 시 Orchestrator가 수집/추론)
+purpose: {보고 목적}
+audience: decision-maker | expert | meeting-participant | reference-only
+deliverable-type: policy-planning | coordination | policy-reference | situation | information | meeting-material | meeting-result | event | general
+meeting-purpose: info-share | opinion-gathering | decision   # meeting-material 시
+event-phase: planning | progress   # event 시
+timing: urgent | normal
+requested-action: {수요자 조치 | none}
+summary-detail: summary-only | split-1-5 | detail-only
+logic-pattern: auto | report-default | iaej-pattern | ...
+reuse-brief: true
+research-first: true | false
 
 ## Context (from .struct-memory.json)
 {이전 생각 정리 요약이 있으면 포함, 없으면 "이전 컨텍스트 없음"}
 
-**참고**: 
-- `use-prior: true` 또는 `source: thinking` 전달 시 Orchestrator는 prior thinking을 강제로 주입한다.
-- Orchestrator는 관련 prior thinking이 있을 경우 `## Previous Thinking Pyramid` 블록을 주입한다.
-- writing agent는 pyramid 분석 후 내용 특성(문제진단/제안/목적-방침/사건-대처 등)에 따라 가장 적합한 템플릿을 선택하여 적용한다. (SCQA는 하나의 옵션일 뿐)
-- template 옵션으로 사용자가 지정 가능 (없으면 agent가 선택). Collaborative 모드에서는 선택 확인.
+**참고**:
+- Orchestrator는 write 시 **Brief → Deliverable Spec → Prior Thinking** 순으로 Context를 구성한다 (`reference/deliverable-brief-schema.md`).
+- Collaborative(기본): purpose/audience/deliverable-type 미지정 시 Orchestrator가 사용자에게 Brief 3항목 질문.
+- Autonomous: Brief 자동 추론 + 폴백 (`audience: expert`, `deliverable-type: general`).
+- `research-first: true` 시 Orchestrator가 research 선행 → `## Source Validation` 주입 (Phase 6).
+- `use-prior: true` 시 prior thinking 강제 주입. writing agent는 Brief·Deliverable Spec 후 **W1→W2→W3** Writing Pipeline + Pyramid Consumption 적용 (Phase 3).
 ```
 
 3. Orchestrator가 반환한 결과를 사용자에게 출력한다

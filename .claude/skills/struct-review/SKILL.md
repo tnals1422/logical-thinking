@@ -5,12 +5,13 @@ user-invocable: true
 
 # /struct-review
 
-thinking 이후 write / problem-solving / expression 결과물에 대해 **Fidelity 검증**을 수행하는 독립 검수 스킬. 최종 결과물 나오기 전 마지막 품질 게이트 역할.
+write / solve / express (및 think) 결과물에 대한 **독립 검수** 스킬. Fidelity · Compliance · **Deliverable Quality** (Phase 4) 게이트.
 
 ## 주요 사용 목적
-- prior thinking pyramid가 downstream에서 얼마나 충실히 소비됐는지 검증 (Fidelity 최우선)
-- 문제 발견 시 구체적인 재생성 지침(Regeneration Directives) 제공
-- Orchestrator가 제어하는 자동 재생성 루프 지원
+- prior thinking pyramid 소비 충실도 (Fidelity / writing-consumption)
+- Brief·유형·수요자 관점 **Deliverable Quality** — 4대 실패 유형 F1~F4, DT1~DT3
+- 문제 발견 시 Regeneration Directives (W1/W2/W3 대상 단계 명시)
+- Orchestrator 자동 재생성 루프 지원
 
 ## 문법
 ```
@@ -36,6 +37,7 @@ review 수행
 
 ## Options
 source: {명시적 prior thinking 경로 (선택)}
+verification: thinking-compliance | writing-consumption | deliverable-quality | both | fidelity | full | source-quality | deliverable+source
 auto-regenerate: true | false   (기본: mode에 따라 Orchestrator 판단)
 
 ## Context (from .struct-memory.json)
@@ -45,11 +47,13 @@ auto-regenerate: true | false   (기본: mode에 따라 Orchestrator 판단)
 3. Orchestrator가 반환한 Review 결과를 사용자에게 출력한다.
 
 ## 동작 원칙
-- Fidelity 검증을 최우선으로 수행 (coreClaim 계승, Level 1 매핑, 구조 활용, 투명성)
-- Rubric 기반 품질 평가는 보조
-- 항상 **Regeneration Directives** (재생성 지침)를 구체적으로 생성
-- Review 결과는 `struct-docs/05-reviewing/` 에 저장
-- Orchestrator가 review 후 fidelity 상태에 따라 재생성 루프를 제어 (autonomous에서 적극, collaborative에서는 확인 후)
+- **write 기본**: `both` (consumption + deliverable-quality); prior 없으면 `deliverable-quality`
+- **solve/express**: `deliverable-quality`
+- **think**: `thinking-compliance`
+- Deliverable DT1(건의 누락 등) → `force_rework` 우선
+- `source-quality` / `deliverable+source` — S1~S5, ST1 무출처 (Phase 6)
+- 항상 **Regeneration Directives** + Review Data JSON (`deliverableQuality`, `deliverableTiers`)
+- 저장: `struct-docs/05-reviewing/`
 
 ## Fallback
 Orchestrator가 없거나 호출 실패 시, Agent 도구를 **`subagent_type: "review"`**으로 직접 호출한다:

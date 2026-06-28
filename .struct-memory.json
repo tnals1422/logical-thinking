@@ -1,5 +1,32 @@
 {
+  "previousResearch": [
+    {
+      "id": "20260628T100000",
+      "timestamp": "2026-06-28T10:00:00.000Z",
+      "topic": "한국 2026 월드컵 32강 탈락 원인",
+      "overall": "partial",
+      "claimsCatalogued": 8,
+      "sourcesCatalogued": 3,
+      "savedTo": "struct-docs/06-researching/20260628-korea-wc2026-exit-sources.md",
+      "linkedCommand": "write"
+    }
+  ],
   "previousThoughts": [
+    {
+      "id": "20260628T110000",
+      "timestamp": "2026-06-28T11:00:00.000Z",
+      "coreClaim": "2026 월드컵 32강 탈락은 결정적 경기 전술·인력 운용 실패가 직접 촉발했으나, 근본적으로는 세대 교체 지연·리그-대표팀 파이프라인 단절·경기 운영 거버넌스 부재가 복합 작용한 구조적 실패다.",
+      "level1Claims": [
+        "결정적 경기 운영·전술 실패",
+        "대회 내 경쟁력·적응 부족",
+        "구조적 인력·파이프라인 약화",
+        "거버넌스·의사결정 체계 미비"
+      ],
+      "pyramidSummary": "직접: 남아공전·선발논란 / 대회: 3위8팀탈락 / 구조: 세대교체·파이프라인 / 제도: 거버넌스",
+      "structuringPath": "forward",
+      "meceStatus": "passed",
+      "savedTo": "struct-docs/01-thinking/20260628-korea-wc2026-exit-causes.md"
+    },
     {
       "id": "20260618T000000",
       "timestamp": "2026-06-18T00:00:00.000Z",
@@ -58,7 +85,83 @@
     }
   ],
   "previousAnalysis": [],
+  "previousReviews": [
+    {
+      "id": "20260628T140000",
+      "timestamp": "2026-06-28T14:00:00.000Z",
+      "target": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md",
+      "source": "struct-docs/01-thinking/20260628-korea-wc2026-exit-causes.md",
+      "verification": "deliverable+source",
+      "fidelity": "pass",
+      "deliverableQuality": "pass",
+      "sourceQuality": "partial",
+      "needs_regeneration": false,
+      "force_rework": false,
+      "recommendation": "Accept",
+      "savedTo": "struct-docs/05-reviewing/20260628-korea-wc2026-reform-plan-review.md"
+    },
+    {
+      "id": "20260628T150000",
+      "timestamp": "2026-06-28T15:00:00.000Z",
+      "target": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md",
+      "source": "struct-docs/01-thinking/20260628-korea-wc2026-exit-causes.md",
+      "verification": "deliverable+source",
+      "fidelity": "pass",
+      "deliverableQuality": "pass",
+      "sourceQuality": "pass",
+      "needs_regeneration": false,
+      "force_rework": false,
+      "recommendation": "Accept",
+      "reviewRound": 2,
+      "savedTo": "struct-docs/05-reviewing/20260628-korea-wc2026-reform-plan-review-r2.md"
+    }
+  ],
+  "previousResearch": [],
+  "briefs": [
+    {
+      "id": "20260628T120000",
+      "timestamp": "2026-06-28T12:00:00.000Z",
+      "reportPurpose": "2026 월드컵 32강 탈락 원인 분석 및 국가대표 운영·육성 체계 개선안 제안",
+      "audience": "decision-maker",
+      "deliverableType": "policy-planning",
+      "logicPattern": "iaej-pattern",
+      "requestedAction": "대표팀 운영 평가 TF 구성 및 단기·중기 개선 과제 승인",
+      "summaryDetailRatio": "split-1-5",
+      "command": "write",
+      "linkedDocument": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md"
+    }
+  ],
   "previousDocuments": [
+    {
+      "id": "20260628T120001",
+      "timestamp": "2026-06-28T12:00:01.000Z",
+      "type": "report",
+      "title": "WC 32강 탈락 원인·개선안",
+      "deliverableType": "policy-planning",
+      "audience": "decision-maker",
+      "briefId": "20260628T120000",
+      "savedTo": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md"
+    },
+    {
+      "id": "20260628T160000",
+      "timestamp": "2026-06-28T16:00:00.000Z",
+      "type": "executive-brief",
+      "title": "WC 32강 탈락 원인·개선안 (Executive Brief)",
+      "deliverableType": "policy-planning",
+      "audience": "decision-maker",
+      "linkedFullReport": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md",
+      "packageRole": "executive-brief",
+      "savedTo": "struct-docs/04-expressing/20260628-korea-wc2026-executive-brief.md"
+    },
+    {
+      "id": "20260628T160001",
+      "timestamp": "2026-06-28T16:00:01.000Z",
+      "type": "attachments-index",
+      "title": "WC 32강 탈락 패키지 첨부목차",
+      "linkedFullReport": "struct-docs/02-writing/20260628-korea-wc2026-reform-plan.md",
+      "packageRole": "attachments-index",
+      "savedTo": "struct-docs/04-expressing/20260628-korea-wc2026-attachments-index.md"
+    },
     {
       "id": "20260618T000001",
       "timestamp": "2026-06-18T00:00:01.000Z",
@@ -91,6 +194,7 @@
   "maxItemsPerArray": 20,
   "userPreferences": {
     "reportTemplate": "report-default",
-    "preferredFormat": "markdown"
+    "preferredFormat": "markdown",
+    "defaultAudience": "expert"
   }
 }
