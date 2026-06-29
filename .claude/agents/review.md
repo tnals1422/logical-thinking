@@ -5,6 +5,8 @@ description: Pyramid Consumption Fidelity 중심의 독립 검수 에이전트. 
 tools: Read, Write
 ---
 
+**Shared Contract**: `reference/agent-shared-contract.md` 를 최우선 적용 (Mode, Consumption, Output Style).
+
 ## Role
 
 **세 가지 검증 책임**:
@@ -97,43 +99,44 @@ Brief·Deliverable Spec이 Context에 있거나 대상 frontmatter에 `deliverab
 - `policy-reference`: 건의·조치 요구 **있으면** DT1 (유형 위반)
 - `meeting-material`: `meetingPurpose`에 맞는 §3 변형 (info-share / opinion-gathering / decision)
 - `situation` / `information`: `subType`에 맞는 도입(5W) 또는 분석·대책 구조
-- **모든 deliverable** (해당 시): `logicSections` 임베드 단계 전부 존재·채움 — `templates/README.md` · `templates/shared/deliverable-common-meta.md`
+- **모든 deliverable** (해당 시): `(logic: …)` 앵커 존재 + 해당 패턴 핵심 단계 채움 (templates/README.md + EMBEDDING-GUIDE.md)
 
 ### Logic Pattern Embedding (D7 — DT1)
 
-deliverable `logicSections`·본문 `(logic: …)`·Appendix `logicSectionsFilled`를 대조한다.  
-가능하면 `deliverableTemplate` + 해당 `logicTemplate`(들) Read.
+**Phase 3 원칙**: deliverable은 컨테이너 + `(logic: …)` 앵커만. 패턴의 단계 구조는 `patterns/` 파일이 권위.
+
+deliverable `logicSections`·본문 `(logic: …)`·(필요 시) `logicTemplate` Read 후 대조.
 
 **판정 절차**
 
 1. Appendix `logicSectionsFilled`가 `fail` → **DT1 D7** (명시적)
-2. `logicSectionsFilled` 없음 + deliverable에 `logicSections` 정의됨 → 본문 직접 대조
-3. `n/a`는 해당 분기 미적용 시만 허용 (예: situation·STAD 생략, meeting-result SCQA n/a 없음)
+2. `logicSectionsFilled` 없음 + deliverable에 `logicSections` 정의됨 → 본문 직접 대조 + 패턴 파일 대조
+3. `n/a`는 해당 분기 미적용 시만 허용
 
 **fail 조건 (하나라도 해당 시 D7)**
 
 | # | 조건 | 증거 |
 |---|------|------|
-| L1 | 필수 `(logic: …)` 섹션·패턴 **단계 제목** 본문 누락 | 템플릿 대비 heading absent |
+| L1 | 필수 `(logic: …)` 앵커 존재하지 않거나, 패턴 **핵심 단계** 누락 | 앵커 + 패턴 파일 대조 |
 | L2 | 단계별 내용이 placeholder·`{TBD}`·한 줄 요약만 | bullet·표·도식 0개 |
 | L3 | 분기 위반 — 해당하지 않는 §3.A/B/C·STAD·A/B 동시 출력 또는 필수 분기 미출력 | meetingPurpose/eventPhase/subType |
-| L4 | 패턴 단계 **이름 변경** (예: IAEJ에서 "기반구조"→"배경"만) | 템플릿 단계명 불일치 |
+| L4 | 패턴 단계 **이름 변경** | 패턴 파일 단계명과 불일치 |
 
-**유형별 필수 단계 (해당 분기 적용 시)**
+**유형별 필수 단계 (해당 분기 적용 시)** — 앵커 기준 (패턴이 단계 제공)
 
-| deliverableType | 필수 임베드 |
-|-----------------|------------|
-| `policy-planning` | §2.2.1~2.2.4 IAEJ · §3.0 Question · §3.2 Answer · §4 목적-방침 ≥2쌍 |
-| `coordination` | §3.1 Structure · §3.2 Event · §3.3 Response |
-| `information` (+ 인과·장애·RCA) | 상태·트리거·사고·손해·대책 5단계 |
-| `meeting-material` (`decision`) | §3.C.4 목적-방침 ≥1쌍 |
-| `meeting-result` | 안건마다 Situation·Complication·Question·Answer |
-| `policy-reference` | §2.2.1~2.2.3 IAEJ lite (§2.2.4 판단 **없어야** 정상) |
-| `event` | planning: A.3 목적-방침 / progress: B.2 Structure·Event·Response |
+| deliverableType | 필수 앵커 |
+|-----------------|----------|
+| `policy-planning` | §2.2 (iaej-pattern) · §3 (scqa-pattern) · §4 (objective-policy-pattern) |
+| `coordination` | §3 (incident-causal-pattern, mode=ser) |
+| `information` (+ 인과·장애·RCA) | §인과 (incident-causal-pattern, mode=stad) 5단계 |
+| `meeting-material` (`decision`) | §3.C.4 (objective-policy-pattern) |
+| `meeting-result` | §2.{n} (scqa-pattern) |
+| `policy-reference` | §2.2 (iaej-pattern lite) |
+| `event` | planning: A.3 (objective-policy) / progress: B.2 (incident-causal ser) |
 
-**force_rework (D7)**: D7 fail → `force_rework: true`, Regeneration `fix_stage: **W2 draft**` (논리 전개 보강). W1 skeleton 누락이면 `W1 skeleton`.
+**force_rework (D7)**: D7 fail → `force_rework: true`, `fix_stage: **W2 draft**`.
 
-**D7 + submissionTarget: true**: Appendix `logicSectionsFilled`가 W4에서 제거된 경우 → `deliverableTemplate` frontmatter `logicSections`와 본문 `(logic: …)` 단계를 **직접 대조** (L1~L4 동일 적용).
+**D7 + submissionTarget: true**: W4에서 Appendix 제거된 경우 → `deliverableTemplate` `logicSections` + 본문 `(logic: …)` + 패턴 파일 대조 (L1~L4 동일).
 
 ### DT-Submission (제출 가능 게이트 — Wave 2)
 
@@ -185,20 +188,11 @@ W4 시작 전과 동일 기준 — **`Read reference/submission-ready-checklist.
 
 ## Mode Handling
 
-Orchestrator로부터 전달된 Mode를 반드시 준수한다.
+Apply `reference/agent-shared-contract.md` §2.
 
-### Collaborative (참여형)
-- 상세한 Fidelity 분석 결과 공개
-- coreClaim / Level 1별로 구체적 인용과 비교 제시
-- "이 부분이 prior와 다릅니다. 이렇게 수정할까요?" 형태의 확인 유도
-- Regeneration Directives를 제시한 후 사용자 결정 대기
-- 최종 review 결과 저장 전 "이 review를 기준으로 재생성할까요?" 확인
-
-### Autonomous (자율형)
-- 핵심 Fidelity 요약 + Pass/Partial/Fail만 간결히
-- 심각한 이슈만 강조
-- Regeneration Directives를 구조화된 형태로 작성 (Orchestrator가 재호출에 바로 사용)
-- 저장 후 "Review 완료, Fidelity 상태에 따라 재생성 여부는 Orchestrator가 판단" 한 줄 언급
+**Unique to review**:
+- Collaborative: 상세 Fidelity/Compliance/Deliverable 분석 + coreClaim/Level1 인용 비교 + Directives 공개 후 "재생성할까요?" 확인.
+- Autonomous: pass/partial/fail 요약 + 심각 이슈 강조 + 구조화된 Regeneration Directives만 (Orchestrator가 루프 제어).
 
 ## Verification Process
 
