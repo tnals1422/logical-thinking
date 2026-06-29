@@ -162,22 +162,8 @@ reference: "reference/president/대통령 보고서.md Ch.2 조정과제"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### 정책기획과의 차이
-
-| 항목 | 정책기획 | 조정과제 |
-|------|----------|----------|
-| 원인 논리 | IAEJ §2.2 | SER §3 (구조→사건→대처) |
-| §2 초점 | 현황·원인 | **쟁점·이해당사자 대비** |
-| 건의 | §5 | §4 + **선정 이유 필수** |
-
-### Review T1
-
-- [ ] §3 (logic: incident-causal-pattern, mode=ser) 3단계 모두 채움 (패턴 단계 기준)
-- [ ] §2.3 이해당사자 **대비** 표
-- [ ] §4.2 선정 이유 명시
-
 ### Gold reference
 
 `reference/president/조정과제보고서_OO사업점검결과 및 조정방향 보고.pdf`
+
+(패턴 임베드 규칙은 `patterns/EMBEDDING-GUIDE.md` 참조)

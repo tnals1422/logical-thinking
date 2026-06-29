@@ -12,7 +12,7 @@ outputStyle: "제출본에 포함/제외 섹션 목록"
 |------|-----|
 | 표지 메타 | 작성일·작성자·보고 목적 |
 | 개요 | coreClaim 인용·핵심 bullet |
-| 본문 | deliverable skeleton 전 섹션 (logic 임베드 포함) |
+| 본문 | deliverable 고수준 섹션 + `(logic: …)` 앵커 내부 패턴 단계 |
 | 건의·결론 | 유형별 |
 | 참고·첨부 | 외부 URL·자료명 |
 | 출처·가정 | research·fact 구분 (해당 시) |

@@ -160,13 +160,7 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의자료"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### meetingPurpose 분기
-
-| meetingPurpose | §3 작성 |
-|----------------|---------|
-| `info-share` | **§3.A만** |
+(패턴 임베드 규칙은 `patterns/EMBEDDING-GUIDE.md` 참조)
 | `opinion-gathering` | **§3.B만** |
 | `decision` | **§3.C만** + §3.C.4 목적-방침 **필수** |
 

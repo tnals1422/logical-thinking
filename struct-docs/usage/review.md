@@ -54,7 +54,7 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 | F3 | 읽을수록 의문 | 배경·근거·용어·출처 부족 |
 | F4 | 문제의식 부재 | 현황·원인 부족, **수요자 조치 불명** |
 
-**DT1 강제 예**: 정책기획인데 건의 없음 · `requestedAction` 미충족 · policy-reference에 건의 있음 · **`logicSectionsFilled: fail`** (D7) · **`submissionReady: fail`** (DT-Submission — Working 잔존·메타 미달)
+**DT1 강제 예**: 정책기획인데 건의 없음 · `requestedAction` 미충족 · policy-reference에 건의 있음 · **`logicSectionsFilled: fail`** (D7 — 앵커 누락 또는 패턴 단계 미채움) · **`submissionReady: fail`** (DT-Submission — Working 잔존·메타 미달)
 
 **DT-Submission (ST1~ST6)** — `submissionTarget: true` write 전용. 상세: `reference/submission-ready-checklist.md`
 

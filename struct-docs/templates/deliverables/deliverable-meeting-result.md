@@ -123,20 +123,8 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의결과"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### 입력 우선순위
-
-1. 회의록·메모
-2. meeting-material 산출물
-3. prior thinking (배경만)
-
-### Review T1
-
-- [ ] 안건마다 **결정 사항** 명시 (없으면 "보류")
-- [ ] SCQA (logic: scqa-pattern): Situation·Complication·Question·Answer **4요소** (안건당)
-- [ ] 작성자 주관 배제
-
 ### Gold reference
 
 `reference/president/회의결과보고서1_과학기술자문회의 보고결과.pdf`
+
+(패턴 임베드 규칙은 `patterns/EMBEDDING-GUIDE.md` 참조)

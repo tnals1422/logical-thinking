@@ -144,19 +144,7 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### eventPhase 분기
-
-| eventPhase | 섹션 | 논리 패턴 |
-|------------|------|----------|
-| `planning` | **§A만** | A.3 목적-방침 필수 |
-| `progress` | **§B만** | B.2 SER 필수 |
-
-### Review T1
-
-- [ ] Phase에 맞는 A 또는 B만 출력
-- [ ] planning: A.3 목적-방침 **최소 1쌍**
+(패턴 임베드 규칙 및 eventPhase 가이드는 `patterns/EMBEDDING-GUIDE.md` 참조)
 - [ ] progress: B.2 Structure·Event·Response **3단계**
 
 ### Gold reference
