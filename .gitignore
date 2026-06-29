@@ -1,0 +1,100 @@
+# ============================================
+# Struct Agent Team - Local Memory & State
+# ============================================
+# Session-to-session context for the Minto agents.
+# Contains previous thoughts, briefs, reviews, documents.
+# This is user/machine specific and should never be committed.
+.struct-memory.json
+.struct-memory.*.json
+.struct-memory.backup.json
+
+# ============================================
+# Claude / AI Agent Local State & Caches
+# ============================================
+# Local settings and overrides (not project config)
+.claude/settings.local.json
+
+# Agent runtime memory (gap detectors, etc.)
+.claude/agent-memory/
+
+# Marketplace / plugin cache (downloaded extensions, bkit marketplace)
+.claude/plugins/cache/
+.claude/plugins/marketplaces/cache/
+
+# ============================================
+# bkit / MCP related caches
+# ============================================
+.bkit/
+**/.bkit/cache/
+**/cache/
+
+# ============================================
+# OS Generated Files
+# ============================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+
+# ============================================
+# IDE / Editor
+# ============================================
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*~
+*.swp
+*.swo
+*.bak
+
+# ============================================
+# Logs & Temporary Files
+# ============================================
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.old
+*.orig
+*.pid
+
+# ============================================
+# Node.js (future proofing)
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ============================================
+# Other common generated / sensitive
+# ============================================
+# Large generated reports or test outputs (if any)
+# *.pdf   # commented out - some reports may be intentionally tracked
+# *.docx
+# *.pptx
+
+# Environment / secrets (never commit)
+.env
+.env.local
+*.pem
+*.key
+secrets/
