@@ -9,7 +9,7 @@ subTypes: [situation, information]
 defaultLogicPattern: incident-causal-pattern
 logicPatternMode: stad
 logicSections:
-  - "§인과 분석 incident-causal-pattern mode=stad (information + 인과·장애·RCA 시 필수)"
+  - "§인과 분석 (logic: incident-causal-pattern, mode=stad) (information + 인과·장애·RCA 시 필수)"
 reference: "reference/president/대통령 보고서.md Ch.3 상황·정보"
 ---
 
@@ -53,7 +53,8 @@ reference: "reference/president/대통령 보고서.md Ch.3 상황·정보"
 
 ## 인과 분석 (logic: incident-causal-pattern, mode=stad — **information + 인과·장애·RCA 시 필수**)
 
-> **논리 흐름**: 상태(State) → 트리거(Trigger) → 사고(Accident) → 손해(Damage)
+> incident-causal (stad): State → Trigger → Accident → Damage → Countermeasures.
+> `patterns/reports/incident-causal-pattern.md` 참조.
 
 ### 상태 (State)
 
@@ -104,7 +105,7 @@ reference: "reference/president/대통령 보고서.md Ch.3 상황·정보"
 ## Appendix: 품질 점검
 
 - subType: {situation | information}
-- logicSectionsFilled: {STAD 5단계 — pass/fail/n/a}
+- logicSectionsFilled: {§인과 분석 (logic: incident-causal-pattern, mode=stad) 5단계 — pass/fail/n/a}
 - 제목·도입문 5W: {pass / fail}
 - 사용 템플릿: deliverable-situation-info.md
 - logicPattern: {none | incident-causal-pattern mode=stad}

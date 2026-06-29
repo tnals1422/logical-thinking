@@ -120,6 +120,9 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의자료"
 
 #### 3.C.4 결정 후 추진 (logic: objective-policy-pattern — **필수 전개**)
 
+> objective-policy-pattern (목적/방침 쌍).
+> `patterns/reports/objective-policy-pattern.md` 참조.
+
 (1) **목적**: {결정 이후 달성 상태}
 
     **방침**: {실행 방식}
@@ -131,6 +134,9 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의자료"
 - **예상 문제점**: {리스크}
 
 #### 3.C.5 쟁점 인과 (logic: incident-causal-pattern, mode=ser — 쟁점 복잡 시 **권장**)
+
+> incident-causal (ser) 간략 전개.
+> `patterns/reports/incident-causal-pattern.md` 참조.
 
 - **구조**: {현행 배경}
 - **사건**: {쟁점 발생 경위}

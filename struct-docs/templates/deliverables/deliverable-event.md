@@ -56,6 +56,9 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ### A.3 프로그램 (logic: objective-policy-pattern — **필수 전개**)
 
+> objective-policy-pattern 형식.
+> `patterns/reports/objective-policy-pattern.md` 참조.
+
 | 순서 | 시간 | 내용 | 담당 |
 |------|------|------|------|
 | 1 | { } | { } | { } |
@@ -94,7 +97,8 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ### B.2 실행 결과 (logic: incident-causal-pattern, mode=ser — **필수 전개**)
 
-> **논리 흐름**: 구조(계획) → 사건(변경·이슈) → 대처(현장 조치)
+> incident-causal (ser).
+> `patterns/reports/incident-causal-pattern.md` 참조.
 
 #### 구조 (Structure) — 계획·전제
 

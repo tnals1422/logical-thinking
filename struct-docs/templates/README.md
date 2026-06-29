@@ -21,9 +21,11 @@ templates/
 
 **핵심 원칙**:
 - `patterns/` = **Primary Logic Source of Truth**. 논리 전개 방식(단계 제목·개발 방법·시각화)은 patterns가 주도한다.
-- `deliverables/` = **Thin Report Type Profile**. 고수준 문서 구조, 타입별 보강(특정 표·분기·건의 규칙), composition 선언(`logicSections`), 수요자/제출 운영 규칙만 담당.
+- `deliverables/` = **Thin Report Type Profile**. 고수준 문서 구조, 타입별 보강(특정 표·분기·건의 규칙), composition 선언(`logicSections`), 수요자/제출 운영 규칙만 담당. **패턴의 내부 단계는 중복 기술하지 않음**.
 - `(logic: xxx-pattern)` 앵커가 있으면, 해당 패턴의 **core logic steps**를 권위 있게 따르고, deliverable은 컨테이너 역할만 한다.
 - 패턴 개선(단계 추가, 예시 강화 등)이 임베드된 모든 산출물에 자동 반영되도록 유지한다.
+
+Phase 2 완료 후, deliverables 파일들은 패턴 중복을 제거하고 앵커 + 보강만 남김.
 
 기존 "deliverables skeleton이 제목·순서를 그대로 따른다"는 규칙은 patterns 중심으로 전환되었다. 상세: `docs/struct-template-role-unification-plan.md`.
 

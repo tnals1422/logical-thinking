@@ -60,6 +60,9 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의결과"
 
 ### 2.{n} {안건 명} (logic: scqa-pattern — **권장 전개**)
 
+> 안건별 mini-SCQA. scqa-pattern의 Situation·Complication·Question·Answer를 적용.
+> 패턴: `patterns/general/scqa-pattern.md`
+
 #### 상황 (Situation)
 
 - {논의 배경·사실}
@@ -131,7 +134,7 @@ reference: "reference/president/대통령 보고서.md Ch.4 회의결과"
 ### Review T1
 
 - [ ] 안건마다 **결정 사항** 명시 (없으면 "보류")
-- [ ] SCQA: Situation·Complication·Question·Answer **4요소** (안건당)
+- [ ] SCQA (logic: scqa-pattern): Situation·Complication·Question·Answer **4요소** (안건당)
 - [ ] 작성자 주관 배제
 
 ### Gold reference
