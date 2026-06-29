@@ -86,6 +86,7 @@ scope: standalone | section-embed
 **Rules**:
 - deliverable 앵커 섹션의 하위 단계 제목은 pattern의 4단계를 따르되, deliverable 컨테이너 번호로 재번호 매김 가능 (예: 2.2.1 기반구조).
 - 제목 변경 금지 (L4 위반).
+- **Phase 4 테스트 추가**: 인과관계 Mermaid 다이어그램 1개 이상 필수 포함 (2026-06-29 추가)
 
 상세 규칙은 중앙 가이드 참조: `patterns/EMBEDDING-GUIDE.md`
 
