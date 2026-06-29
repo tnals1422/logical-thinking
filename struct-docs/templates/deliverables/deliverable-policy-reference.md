@@ -56,7 +56,8 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책참고"
 
 ### 2.2 배경 분석 (logic: iaej-pattern lite — **권장 전개**)
 
-> 건의·판단(J) 제언 생략 — 기반·행동·사건만 참고 수준 분석
+> iaej-pattern lite: 기반·행동·사건만 (판단·제언 생략).
+> 패턴: `patterns/reports/iaej-pattern.md` (lite 모드 적용)
 
 #### 2.2.1 기반구조 (Infrastructure)
 

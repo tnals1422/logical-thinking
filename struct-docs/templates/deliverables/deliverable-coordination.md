@@ -77,7 +77,8 @@ reference: "reference/president/대통령 보고서.md Ch.2 조정과제"
 
 ## 3. 조정 대안 분석 (logic: incident-causal-pattern, mode=ser — **필수 전개**)
 
-> **논리 흐름**: 구조(Structure) → 사건(Event) → 대처(Response)
+> incident-causal-pattern (mode=ser)의 Structure → Event → Response + 대처 효과를 전개.
+> 패턴 단계는 `patterns/reports/incident-causal-pattern.md` 참조. (EMBEDDING-GUIDE.md)
 
 ### 3.1 구조 (Structure) — 변하지 않는 배경
 
@@ -161,22 +162,8 @@ reference: "reference/president/대통령 보고서.md Ch.2 조정과제"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### 정책기획과의 차이
-
-| 항목 | 정책기획 | 조정과제 |
-|------|----------|----------|
-| 원인 논리 | IAEJ §2.2 | SER §3 (구조→사건→대처) |
-| §2 초점 | 현황·원인 | **쟁점·이해당사자 대비** |
-| 건의 | §5 | §4 + **선정 이유 필수** |
-
-### Review T1
-
-- [ ] §3.1~3.3 Structure·Event·Response **3단계 모두** 채움
-- [ ] §2.3 이해당사자 **대비** 표
-- [ ] §4.2 선정 이유 명시
-
 ### Gold reference
 
 `reference/president/조정과제보고서_OO사업점검결과 및 조정방향 보고.pdf`
+
+(패턴 임베드 규칙은 `patterns/EMBEDDING-GUIDE.md` 참조)

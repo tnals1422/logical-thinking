@@ -21,7 +21,7 @@
 
 | # | 코드 | 항목 | fail 조건 |
 |---|------|------|----------|
-| ST1 | logic | `logicSectionsFilled: pass` (D7) | 임베드 단계 누락·placeholder만 |
+| ST1 | logic | `logicSectionsFilled: pass` (D7) | `(logic: …)` 앵커 + 패턴 핵심 단계 누락·placeholder만 |
 | ST2 | facts | 핵심·건의에 `TBD`·`출처 미확인`·`{placeholder}` | 건의·핵심 수치·조치 문장에 잔존 |
 | ST3 | clean | 파이프라인 흔적·내부 링크 | Audience Pass, MECE, Pipeline Meta, Appendix 품질, `struct-docs/05-reviewing` 등 |
 | ST4 | meta | 표지 메타 | 작성일·작성자·보고 목적 누락; 테스트용 작성자 그대로 |

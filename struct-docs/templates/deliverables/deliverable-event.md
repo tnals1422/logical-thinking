@@ -56,6 +56,9 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ### A.3 프로그램 (logic: objective-policy-pattern — **필수 전개**)
 
+> objective-policy-pattern 형식.
+> `patterns/reports/objective-policy-pattern.md` 참조.
+
 | 순서 | 시간 | 내용 | 담당 |
 |------|------|------|------|
 | 1 | { } | { } | { } |
@@ -94,7 +97,8 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ### B.2 실행 결과 (logic: incident-causal-pattern, mode=ser — **필수 전개**)
 
-> **논리 흐름**: 구조(계획) → 사건(변경·이슈) → 대처(현장 조치)
+> incident-causal (ser).
+> `patterns/reports/incident-causal-pattern.md` 참조.
 
 #### 구조 (Structure) — 계획·전제
 
@@ -140,19 +144,7 @@ guideNote: "Ch.5 본문 미완 — PDF gold 대조 권장"
 
 ---
 
-## 패턴 가이드 (에이전트 참고 — 출력에 포함하지 않음)
-
-### eventPhase 분기
-
-| eventPhase | 섹션 | 논리 패턴 |
-|------------|------|----------|
-| `planning` | **§A만** | A.3 목적-방침 필수 |
-| `progress` | **§B만** | B.2 SER 필수 |
-
-### Review T1
-
-- [ ] Phase에 맞는 A 또는 B만 출력
-- [ ] planning: A.3 목적-방침 **최소 1쌍**
+(패턴 임베드 규칙 및 eventPhase 가이드는 `patterns/EMBEDDING-GUIDE.md` 참조)
 - [ ] progress: B.2 Structure·Event·Response **3단계**
 
 ### Gold reference

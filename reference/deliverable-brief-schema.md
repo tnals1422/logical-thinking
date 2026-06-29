@@ -72,7 +72,7 @@ deliverableType: {enum}
 timing: {urgent | normal}
 requestedAction: {text | none | reference-only}
 summaryDetailRatio: {summary-only | split-1-5 | detail-only}
-logicPattern: {auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern}
+logicPattern: {auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern | fabe-pattern | prep-pattern | case-measure-pattern}
 logicPatternMode: {ser | stad}   # incident-causal-pattern 시
 meetingPurpose: {info-share | opinion-gathering | decision}   # meeting-material 시
 eventPhase: {planning | progress}   # event 시
@@ -116,7 +116,7 @@ Orchestrator가 Brief 확정 후 Specialist 호출 직전에 생성.
 deliverableType: {Brief와 동일}
 deliverableTemplate: {struct-docs/templates/...}
 logicPattern: {확정된 논리 패턴}
-logicTemplate: {struct-docs/templates/patterns/{pattern}.md}
+logicTemplate: locate under `struct-docs/templates/patterns/**/{pattern}.md` (subdirs: education/, proposals/, reports/, general/ 로 desktop 구조 반영)
 fallbackTemplate: {deliverable 미구현 시 사용}
 summaryDetailRatio: {Brief와 동일}
 requestedActionRequired: {true | false}
@@ -156,17 +156,18 @@ submissionTarget: {Brief와 동일}
 
 | deliverableType | auto 시 logicPattern | mode | 임베드 섹션 |
 |-----------------|---------------------|------|------------|
-| `policy-planning` | `iaej-pattern` + `scqa-pattern` + `objective-policy-pattern` | — | §2.2 · §3 · §4 |
+| `policy-planning` | `iaej-pattern` + `scqa-pattern` + `objective-policy-pattern` (+ fabe/prep/case-measure 보조) | — | §2.2 · §3 · §4 |
 | `coordination` | `incident-causal-pattern` | `ser` | §3 |
 | `situation` | — | — | 사실 전달만 |
 | `information` | `incident-causal-pattern` (인과·장애·RCA 시) | `stad` | §인과 분석 |
-| `meeting-material` | `objective-policy-pattern` | — | §3.C.4 (decision) |
-| `meeting-result` | `scqa-pattern` (안건별) | — | §2.{n} |
-| `policy-reference` | `iaej-pattern` (lite) | — | §2.2 |
-| `event` | `objective-policy-pattern` / `incident-causal-pattern` | `ser` | A.3 / B.2 (phase별) |
-| `general` | `scqa-pattern` | — | standalone |
+| `meeting-material` | `objective-policy-pattern` (+ fabe/prep) | — | §3.C.4 (decision) |
+| `meeting-result` | `scqa-pattern` (안건별, prep 내부) | — | §2.{n} |
+| `policy-reference` | `iaej-pattern` (lite) (+ fabe/case-measure) | — | §2.2 |
+| `event` | `objective-policy-pattern` / `incident-causal-pattern` (+ case-measure) | `ser` | A.3 / B.2 (phase별) |
+| `general` | `scqa-pattern` (또는 prep/fabe standalone) | — | standalone |
 
-`logicPattern: auto`이면 위 표를 Spec에 명시. **임베드는 deliverable skeleton이 주도** — logicTemplate은 W2 보강 참조.
+`logicPattern: auto`이면 위 표를 Spec에 명시.
+**Phase 3 Unification**: deliverableTemplate은 고수준 outline + composition 선언. logicTemplate (패턴)은 앵커 내부 상세 단계·개발 방법을 제공. deliverable은 컨테이너 역할.
 
 ### 2.4 requestedActionRequired
 

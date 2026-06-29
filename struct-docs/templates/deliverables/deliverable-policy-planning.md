@@ -57,28 +57,8 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 
 ### 2.2 원인분석 (logic: iaej-pattern — **필수 전개**)
 
-> **논리 흐름**: 기반구조(I) → 행동(A) → 사건(E) → 판단(J)
-
-#### 2.2.1 기반구조 (Infrastructure)
-
-- {변하지 않는 제도·인프라·환경·구조}
-- {핵심 구조 요소 2~3개}
-
-#### 2.2.2 행동 (Activity)
-
-- {구조 위에서 반복·일상적으로 일어나는 활동·운영 패턴}
-
-#### 2.2.3 사건 (Event)
-
-- {행동 과정에서 발생한 문제·이슈·실패}
-- {인과 맥락 — 표 또는 Mermaid}
-
-#### 2.2.4 판단 (Judge) 및 제언
-
-- {각 계층 평가 요약}
-- **이런 까닭에 →** {기반구조 수준 개선 제언}
-- **이런 까닭에 →** {행동·운영 수준 제언}
-- **이런 까닭에 →** {사건 대응·예방 제언}
+> iaej-pattern의 4단계(기반구조 → 행동 → 사건 → 판단 + '이런 까닭에 →' 제언)를 전개하라.
+> 패턴 단계 제목과 구조는 `patterns/reports/iaej-pattern.md`를 따른다. (상세: EMBEDDING-GUIDE.md)
 
 ### 2.3 기존 대응 사례
 
@@ -92,6 +72,9 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 - **해외**: {사례·시사점}
 
 ## 3. 정책수단과 대안 (logic: scqa-pattern — **필수 전개**)
+
+> scqa-pattern의 구조(Situation·Complication·Question·Answer + 근거)를 적용하되, 정책대안 비교·선정에 맞게 변형.
+> 상세 단계는 `patterns/general/scqa-pattern.md` 참조. (EMBEDDING-GUIDE.md)
 
 ### 3.0 핵심 질문 (Question)
 
@@ -130,6 +113,9 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 - **현재 대비 변화**: {before → after}
 
 ## 4. 추진계획 (logic: objective-policy-pattern — **필수 전개**)
+
+> objective-policy-pattern의 (n) **목적 / 방침** 쌍 형식을 사용.
+> 패턴 상세: `patterns/reports/objective-policy-pattern.md`
 
 (1) **목적**: {1단계 달성 상태}
 
@@ -195,9 +181,9 @@ reference: "reference/president/대통령 보고서.md Ch.2 정책기획"
 
 ### Review T1
 
-- [ ] §2.2.1~2.2.4 **4단계 모두** 채움 + '이런 까닭에' 최소 2개
-- [ ] §3.0 Question 1문장 + §3.2 Answer 표·근거
-- [ ] §4 목적-방침 쌍 **최소 2개**
+- [ ] §2.2 (logic: iaej-pattern) 4단계 모두 채움 + '이런 까닭에' 최소 2개 (패턴 단계 기준)
+- [ ] §3 (logic: scqa-pattern) Question 1문장 + Answer 구조·근거
+- [ ] §4 (logic: objective-policy-pattern) 목적-방침 쌍 **최소 2개**
 - [ ] §5 건의 — decision-maker 시 필수
 
 ### Gold reference

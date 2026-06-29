@@ -186,7 +186,7 @@ deliverableType: policy-planning | coordination | policy-reference | situation |
 timing: urgent | normal
 requestedAction: {수요자가 해야 할 일 — 결정/승인/건의/참고만/없음}
 summaryDetailRatio: summary-only | split-1-5 | detail-only
-logicPattern: auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern
+logicPattern: auto | scqa-pattern | iaej-pattern | incident-causal-pattern | objective-policy-pattern | fabe-pattern | prep-pattern | case-measure-pattern
 logicPatternMode: ser | stad   # incident-causal-pattern
 ```
 
@@ -257,7 +257,7 @@ Orchestrator Step 3 — Specialist 호출 직전.
 
 **MVP**: Wave 1 + Wave 2 (정책기획 + 상황·정보)
 
-논리 패턴(`templates/patterns/*.md`)은 deliverable skeleton `(logic: …)` 섹션에 **임베드** — 단계 제목까지 출력.
+논리 패턴(`templates/patterns/**/*.md`)은 deliverable의 `(logic: …)` 앵커 내부에 단계 구조를 제공한다. (deliverables는 thin profile, patterns가 Primary Logic Core)
 
 ### 3.5 Writing Agent 4단계 내부화 (W4 External Face)
 
