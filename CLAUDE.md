@@ -70,6 +70,16 @@ struct-docs/
 
 이 스타일은 "직관적으로 이해하기 쉽게"라는 원칙을 반영한다. 구체적 규칙은 실제 사용 피드백을 통해 점진적으로 정교화한다.
 
+**보고서용 HTML 기본 규칙** (2026-06-29)
+- 보고서 HTML(특히 고객사·의사결정자 대상)은 특별한 언급이 없어도 **인쇄/PDF 최적화 버전**으로 생성.
+- 표준 적용 내용:
+  - 다이어그램: Mermaid 대신 정적 inline SVG 사용 (브라우저 인쇄 시 렌더 실패 방지).
+  - `@media print` CSS 필수: `print-color-adjust: exact`, 배경/색상 강제, `break-inside: avoid`, A4 여백 최적화.
+  - 레이아웃: 화면용 가독성 유지하면서 인쇄 시 선형·고대비·안정적 형태.
+  - 외부 의존 최소화 또는 print-safe 처리.
+  - 상단에 인쇄 방법 팁(화면 전용, 인쇄 시 숨김) 포함.
+- 파일명: 기본 `...-report.html` (인쇄 최적화) 또는 필요 시 `-print.html` 명시.
+
 ## 템플릿 및 유지보수
 
 - `struct-docs/templates/` 는 `deliverables/` · `patterns/` · `express/` · `shared/` 4축 디렉터리. 파일명은 영문 kebab-case (예: `patterns/incident-causal-pattern.md`)

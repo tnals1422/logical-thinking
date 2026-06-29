@@ -50,6 +50,17 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 **W3 체크리스트**: 수요자 요구 충족 · 객관성 · 중복·피동형 제거 · (정책·조정) 조치 명확  
 **W4 체크리스트**: `reference/submission-ready-checklist.md` (ST1~ST6)
 
+### HTML 보고서 출력 기본 규칙 (2026-06-29 추가)
+- 보고서용 HTML을 생성할 때는 **특별한 언급이 없어도 기본적으로 인쇄/PDF 최적화 버전**으로 생성한다.
+- 인쇄 최적화 기본 사양:
+  - Mermaid 등 JS 의존 다이어그램은 **정적 inline SVG**로 대체 (인쇄 시 렌더링 실패 방지).
+  - `@media print` CSS 필수 포함: `print-color-adjust: exact`, 배경/색상 강제, 페이지 브레이크 제어 (`break-inside: avoid`), A4 여백 최적화.
+  - 레이아웃: 화면용 미려함 유지하면서 인쇄 시 선형·고대비·여백 충분한 형태로 동작.
+  - 외부 CDN 최소화 또는 print-safe 처리 (가능하면 inline).
+  - 상단에 인쇄 팁(화면에서만 표시, 인쇄 시 숨김) 포함.
+  - 파일명 관례: `...-report.html` (인쇄 최적화된 단일 파일) 또는 `...-report-print.html` 명시.
+- 고객사·의사결정자 대상 보고서의 경우 특히 이 규칙을 우선 적용.
+
 | submissionTarget | 최종 산출물 | frontmatter |
 |------------------|------------|-------------|
 | `true` (기본) | 표지·개요·본문·건의만 (Working **없음**) | `submission-ready`, `submissionReady: true` |
@@ -74,6 +85,16 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 /struct-write {주제} template:objective-policy-pattern
 /struct-write 경쟁사 대비 우위 설명 포함 제안서   # Orchestrator가 내용 신호 분석 → fabe-pattern 제안 가능
 ```
+
+## HTML 보고서 생성 규칙 (기본)
+- 보고서용 HTML을 출력할 때는 **특별한 언급이 없어도 인쇄/PDF 최적화 버전**으로 생성한다.
+- 인쇄 최적화 표준:
+  - 다이어그램은 Mermaid 대신 **정적 inline SVG** 사용 (브라우저 Print → PDF 시 렌더 실패 방지).
+  - `@media print` CSS 포함: `print-color-adjust: exact`, 색상/배경 강제, 페이지 브레이크 제어, A4 최적 여백.
+  - 레이아웃은 화면용 미려함을 유지하면서 인쇄 시 선형·고대비·안정적으로 동작.
+  - 상단에 인쇄 팁(화면에서만 보이고 인쇄 시 숨김) 제공.
+  - 외부 CDN/JS 의존은 print-safe하게 처리하거나 제거.
+- 파일명 관례: `YYYYMMDD-...-report.html` (인쇄 최적화된 메인 파일). 필요 시 별도 screen 버전 병행.
 
 ## 템플릿 선택
 

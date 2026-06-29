@@ -13,6 +13,21 @@
   ],
   "previousThoughts": [
     {
+      "id": "20260629T100000",
+      "timestamp": "2026-06-29T10:00:00.000Z",
+      "coreClaim": "유휴 상태의 app↔DB 연결이 네트워크 계층에서 조용히 단절되었으나 OS tcp_keepalive_time=1200과 HikariCP keepalive-time 미설정으로 인한 감지 공백(H7)이 방아쇠가 되어 죽은 연결이 풀에 잔존했고, MariaDB wait_timeout=28800(H8)이 회수율 0의 증폭기로 작용하여 2.5시간 만에 300 한도에 도달한 후 75시간 동안 자가회복이 불가능했던 장애이며, H1~H6·H9 가설 배제 후 확정된 H7+H8을 각각 keepalive-time 설정과 wait_timeout=600으로 제거하는 조치로 포화 진입을 차단할 수 있다.",
+      "level1Claims": [
+        "H7 감지 공백이 죽은 연결을 풀에 잔존시킨 방아쇠 메커니즘이다",
+        "H8 wait_timeout=28800이 끊긴 연결을 회수율 0으로 적체시킨 증폭기 메커니즘이다",
+        "단절 국면과 포화 국면에서 self-cure가 각각 다른 구조적 이유로 실패했다",
+        "H1~H6·H9는 철저한 교차 검증으로 배제되었고 H7+H8에 표적화된 조치에는 명확한 한계가 있다"
+      ],
+      "pyramidSummary": "H7(감지 공백 방아쇠)+H8(wait_timeout 증폭기), MECE 배제 통과, 4단계 조치+한계 명시",
+      "structuringPath": "forward",
+      "meceStatus": "passed",
+      "savedTo": "struct-docs/01-thinking/20260629-skba-edgepc-db-rca.md"
+    },
+    {
       "id": "20260628T110000",
       "timestamp": "2026-06-28T11:00:00.000Z",
       "coreClaim": "2026 월드컵 32강 탈락은 결정적 경기 전술·인력 운용 실패가 직접 촉발했으나, 근본적으로는 세대 교체 지연·리그-대표팀 파이프라인 단절·경기 운영 거버넌스 부재가 복합 작용한 구조적 실패다.",
@@ -87,6 +102,23 @@
   "previousAnalysis": [],
   "previousReviews": [
     {
+      "id": "20260629T120000",
+      "timestamp": "2026-06-29T12:00:00.000Z",
+      "target": "struct-docs/02-writing/20260629-skba-edgepc-db-final-incident-report.md",
+      "source": "struct-docs/01-thinking/20260629-skba-edgepc-db-rca.md",
+      "verification": "both",
+      "fidelity": "pass",
+      "deliverableQuality": "pass",
+      "sourceQuality": "pass",
+      "compliance": "partial",
+      "submissionReady": "pass",
+      "needs_regeneration": false,
+      "force_rework": false,
+      "recommendation": "Accept",
+      "directives_summary": "투명성 1줄 추가 권고 (prior thinking 기반). D7·ST1~ST6 모두 pass.",
+      "savedTo": "struct-docs/05-reviewing/20260629-skba-edgepc-db-final-incident-report-review.md"
+    },
+    {
       "id": "20260628T170000",
       "timestamp": "2026-06-28T17:00:00.000Z",
       "target": "/Users/sumin/Downloads/SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
@@ -133,6 +165,22 @@
   "previousResearch": [],
   "briefs": [
     {
+      "id": "20260629T110000",
+      "timestamp": "2026-06-29T11:00:00.000Z",
+      "reportPurpose": "SKBA 12라인 EdgePC DB 연결 고갈 장애에 대한 최종 장애보고서 (IT 지식이 부족한 고객사 프로젝트 담당자 대상)",
+      "audience": "decision-maker",
+      "deliverableType": "information",
+      "logicPattern": "incident-causal-pattern",
+      "logicPatternMode": "stad",
+      "requestedAction": "이 보고서를 검토해 주시고, 추가로 궁금한 점이나 확인이 필요하시면 언제든 연락 주십시오.",
+      "summaryDetailRatio": "detail-only",
+      "submissionTarget": true,
+      "command": "write",
+      "linkedDocument": "struct-docs/02-writing/20260629-skba-edgepc-db-final-incident-report.md",
+      "sourceDocument": "SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
+      "priorThinking": "struct-docs/01-thinking/20260629-skba-edgepc-db-rca.md"
+    },
+    {
       "id": "20260628T180000",
       "timestamp": "2026-06-28T18:00:00.000Z",
       "reportPurpose": "SKBA 12라인 EdgePC DB 연결 고갈 최종 장애보고서 (PDF 포렌식 분석 기반)",
@@ -165,6 +213,18 @@
     }
   ],
   "previousDocuments": [
+    {
+      "id": "20260629T110000",
+      "timestamp": "2026-06-29T11:00:00.000Z",
+      "type": "report",
+      "title": "SKBA 12라인 EdgePC DB 연결 고갈 최종 장애보고서 (고객사용)",
+      "deliverableType": "information",
+      "audience": "decision-maker",
+      "briefId": "20260629T110000",
+      "sourceDocument": "SKBA 12라인 EdgePC DB 연결 고갈 장애 — 근본원인 분석 보고서_20260626.pdf",
+      "priorThinking": "struct-docs/01-thinking/20260629-skba-edgepc-db-rca.md",
+      "savedTo": "struct-docs/02-writing/20260629-skba-edgepc-db-final-incident-report.md"
+    },
     {
       "id": "20260628T190000",
       "timestamp": "2026-06-28T19:00:00.000Z",
