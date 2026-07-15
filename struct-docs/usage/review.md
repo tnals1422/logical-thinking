@@ -30,7 +30,7 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 | `source-quality` | S1~S5 출처·균형 (Phase 6) | research 후 · F3 보조 |
 | `deliverable+source` | Deliverable + Source | information·policy-planning |
 
-옵션: `verification: both` (스킬 → Orchestrator)
+옵션: `verification: both` (스킬 → Parent가 Context 구성 후 **`review` only** spawn)
 
 ## 주요 특징
 - **세 가지 검증 영역**:
@@ -67,7 +67,7 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 | ST5 | 수요자 조치 | W3 |
 | ST6 | audience 톤 | W3 |
 - 항상 **Regeneration Directives** 생성 + 강제/권고 구분
-- Orchestrator가 단계 완료 게이트를 제어하고 재생성 루프를 결정 (강제 시 우선)
+- **Parent**가 단계 완료 게이트를 제어하고 재생성 루프를 결정 (강제 시 우선). review agent는 재생성 spawn 금지.
 
 ## 모드
 - **참여형 (Collaborative)**: 상세 비교 + 인용 + "이대로 재생성할까요?" 확인 루프
@@ -116,28 +116,28 @@ thinking → write/solve/express 이후 **최종 독립 검수자** 역할.
 
 전체 워크플로우는 [workflow.mmd](workflow.mmd) 참조.
 
-## Orchestrator 동작 (중요)
+## Parent 동작 (중요 · Review Gate)
 - 단계 완료 후 review를 호출하여 Compliance + Fidelity를 검사
 - Review Data의 `force_rework` 또는 Recommendation의 "강제" 여부에 따라:
   - 강제: 자동 또는 확인 후 해당 단계 재호출
   - 권고: 사용자 선택 후 재호출
 - Review Feedback에는 Compliance 이슈와 Fidelity 이슈를 함께 포함
-- Review 자체는 재생성을 호출하지 않음 (Orchestrator만 제어)
+- Review 자체는 재생성을 호출하지 않음 (**Parent만** 제어)
 
 ## Compliance 강도 정책 (Option A)
 - Non-negotiables 위반은 거의 항상 강제.
 - 과정 증거(기록 여부)는 "최소한의 구체적 흔적"이 있으면 준수 인정.
 - 내부 사고의 품질 자체는 specialist에게 맡기고, "했는지 + 기록했는지"만 본다.
-- 자세한 기준은 `.claude/agents/review.md`의 "Compliance Strictness Model" 섹션 참조.
+- 자세한 기준은 `.grok/agents/review.md`의 "Compliance Strictness Model" 섹션 참조.
 
-## Orchestrator의 force_rework 판단 (구체화)
-Orchestrator는 `force_rework` + `deliverableQuality` + `submissionReady` + DT1 + Mode를 종합한다.
+## Parent의 force_rework 판단 (구체화)
+Parent는 `force_rework` + `deliverableQuality` + `submissionReady` + DT1 + Mode를 종합한다.
 - `submissionReady: fail` → express Package 보류 · ST3/ST4는 W4 재호출
 - Tier 1 / **DT1** 또는 force_rework=true → 강제 우선
 - `deliverableQuality: fail` + F4(건의) → 강제 고려
 - Autonomous에서는 Tier 2 + Fidelity 영향 시에도 강제 경향
 - Collaborative에서는 강제라 해도 사용자 확인 기회를 부여 ("강제 권고")
-- 자세한 결정 표는 `.claude/agents/orchestrator.md` Step R4 참조.
+- 자세한 결정 표: `reference/orchestrator-review-gate.md` · `.grok/agents/orchestrator.md` (Parent 프로세스 스펙).
 
 ## 권장 조합
 - 고품질 보고서: `think → write → review`

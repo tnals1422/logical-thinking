@@ -12,7 +12,7 @@ type: cheatsheet
 
 ## Brief (Phase 1)
 
-Orchestrator가 solve 전 Brief를 수집합니다 (`audience`, `deliverable-type`, `purpose` 등).
+**Parent**가 solve 전 Brief를 수집합니다 (`audience`, `deliverable-type`, `purpose` 등).
 - `audience: decision-maker` → 액션 플랜에 수요자 조치 명시
 - `deliverable-type: coordination` → 쟁점·이해관계 분석 강화
 
@@ -22,7 +22,8 @@ Orchestrator가 solve 전 Brief를 수집합니다 (`audience`, `deliverable-typ
 - **참여형 (기본)**: Brief 확인 → framing, 가설, Root Cause, 해결안 단계별 확인
 - **자율형**: Brief 추론 → 전체 자동 + 요약만
 
-Orchestrator: **Brief → Prior** 순 Context 구성.
+Parent: **Brief → Prior** 순 Context 구성 후 **`problem-solving` only** spawn.  
+`subagent_type: "orchestrator"` 금지.
 
 ## 언제 쓰나
 - 원인을 모르는 문제를 체계적으로 파헤치고 싶을 때
@@ -40,7 +41,7 @@ Orchestrator: **Brief → Prior** 순 Context 구성.
 - 저장: `struct-docs/03-solving/YYYYMMDD-{title}.md`
 
 ## 관련
-- `/struct-think` 로 먼저 구조화하면 Orchestrator가 solve 호출 시 prior pyramid를 **framing 품질 향상** 용도로 주입한다 (직접 주장 이식 금지).
+- `/struct-think` 로 먼저 구조화하면 Parent가 solve 시 prior pyramid를 **framing 품질 향상** 용도로 주입한다 (직접 주장 이식 금지).
 - 분석 결과를 문서화하고 싶을 때 `/struct-write` 사용.
 - 전체 흐름: [workflow.mmd](workflow.mmd)
 - 상세 시나리오: [scenarios.md](scenarios.md) (S03)

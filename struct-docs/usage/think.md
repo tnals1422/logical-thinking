@@ -14,7 +14,8 @@ type: cheatsheet
 - **참여형 (기본)**: "자세히 같이 해줘", "검토하면서" → 단계별 확인 (Prior, CS, GPS, coreClaim, MECE)
 - **자율형**: "빠르게", "한 번에" → 자동 전체 실행 + 최소 요약만
 
-Orchestrator가 모든 호출을 중계하고, 모드를 감지하여 Specialist에 전달합니다.
+**Parent-as-Orchestrator (Grok)**: Parent가 모드를 감지한 뒤 **`thinking` specialist만** spawn 한다.  
+`subagent_type: "orchestrator"` 는 쓰지 않는다.
 
 ## 언제 쓰나
 - 생각이 많을 때 논리적으로 정리하고 싶을 때
@@ -34,7 +35,8 @@ Orchestrator가 모든 호출을 중계하고, 모드를 감지하여 Specialist
 - Pyramid Data 블록 포함 (후속 write/solve에서 재사용)
 
 ## 관련
-- `/struct-think` 결과는 Orchestrator가 writing/solve/express 호출 시 **Prior Thinking Pyramid** 로 자동 주입한다.
+- `/struct-think` 결과는 후속 write/solve/express 시 Parent가 **Prior Thinking Pyramid** 로 주입한다.
 - 권장 워크플로: `/struct-think` → `/struct-write` 또는 `/struct-solve` (Pyramid Consumption 활용)
 - 전체 흐름: [workflow.mmd](workflow.mmd) 참조
 - 상세 시나리오: [scenarios.md](scenarios.md) (S01, S02, S06 등)
+- 런타임 묶음: [grok-parent-as-orchestrator archive](../../docs/archive/2026-07/grok-parent-as-orchestrator/)

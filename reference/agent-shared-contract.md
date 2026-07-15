@@ -1,6 +1,6 @@
 # Agent Shared Contract (Minto Struct Team)
 
-> **목적**: .claude/agents/ 전체에 반복되는 Mode, Brief/Prior/Source 소비, 기본 스타일 규칙을 한 곳에 집중.
+> **목적**: .grok/agents/ 전체에 반복되는 Mode, Brief/Prior/Source 소비, 기본 스타일 규칙을 한 곳에 집중.
 > **사용법**: 모든 specialist는 본 파일을 최우선 적용. Orchestrator는 주입 시 이 규칙을 따른다.
 > **Non-specialist 내용은 절대 agent별로 재기재 금지.**
 

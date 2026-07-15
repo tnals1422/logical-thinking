@@ -11,6 +11,10 @@ status: draft-for-review
 > **목적**: 구체적인 사용자 사용 시나리오를 정의. 실제 사용 중심 spec 문서.
 > 상세 내용은 `docs/struct-usage-scenarios.md` 참조.
 
+> **Runtime (2026-07)**: Primary = **Grok Build · Parent-as-Orchestrator**.  
+> 본 문서의 “Orchestrator”는 **자식 서브에이전트가 아니라 Parent가 인라인 수행하는 프로세스**를 가리킨다.  
+> `subagent_type: "orchestrator"` 스폰은 primary 금지. 설계: `docs/archive/2026-07/grok-parent-as-orchestrator/grok-first-parent-as-orchestrator.design.md`
+
 **빠른 모드 안내**
 - 참여형 (기본): "자세히 같이 해줘", "검토하면서"
 - 자율형: "빠르게", "초안만"
@@ -20,7 +24,7 @@ status: draft-for-review
 ---
 
 ## 주요 시나리오 (요약)
-> **대상**: Orchestrator, specialists(Thinking/Writing/Problem-solving/Expression), Skills, Memory, Prior Reuse 로직 검증 및 개선.
+> **대상**: Parent(Orchestrator 역할), specialists(Thinking/Writing/Problem-solving/Expression), Skills, Memory, Prior Reuse 로직 검증 및 개선.
 > **원칙**: 시나리오 없이 기능/프롬프트를 만들지 않는다. 모든 주요 동작은 최소 1개 이상의 구체 시나리오에 의해 정당화되어야 한다.
 
 ## 개요

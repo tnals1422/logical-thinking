@@ -15,13 +15,13 @@ type: cheatsheet
 | `/struct-research {자료}` | 출처·균형·다중 출처 검증 | [research.md](research.md) |
 
 ## Brief (Phase 1)
-write · solve · express 호출 시 Orchestrator가 **purpose / audience / deliverable-type** Brief를 수집합니다.
+write · solve · express 호출 시 **Parent**(오케스트레이션 인라인)가 **purpose / audience / deliverable-type** Brief를 수집합니다.
 - 상세: `reference/deliverable-brief-schema.md`
 - 설계: `docs/struct-deliverable-system.design.md`
 
 ## Writing Pipeline (Phase 3)
-`/struct-write` 시 writing agent가 **W1 뼈대 → W2 초안 → W3 수요자 관점 수정** 순으로 본문 작성.
-- 상세: [write.md](write.md) § Writing 3단계
+`/struct-write` 시 writing agent가 **W1 뼈대 → W2 초안 → W3 수요자 관점 수정 → (기본) W4 제출면** 순으로 본문 작성.
+- 상세: [write.md](write.md) § Writing 4단계
 
 ## Deliverable Review (Phase 4)
 `/struct-review` 시 **Deliverable Quality** — 4대 실패 유형(F1~F4), DT1(건의·틀) 검증. write 후 기본 `both`.
@@ -61,14 +61,32 @@ write · solve · express 호출 시 Orchestrator가 **purpose / audience / deli
 
 모드 미지정 시 참여형. 자연어로 전달하거나 `mode: collaborative|autonomous`.
 
-## 에이전트 구조
-Orchestrator(sonnet) → Thinking/Writing/ProblemSolving(opus) + Expression(sonnet) + Review(sonnet)
+## 에이전트 구조 (Grok Primary)
 
-Review는 write/solve/express **후**의 Fidelity 게이트이며, Orchestrator가 재생성 루프를 제어한다.
+```text
+Skill → Parent(메인) = orchestrator.md 프로세스 인라인
+      → spawn(specialist only): thinking | writing | problem-solving | expression | review | research
+```
 
-> **최근 업데이트**: 템플릿 파일명 영문화 (structure-event-response-pattern.md 등), 전체 워크플로우 문서화
+- **금지**: primary에서 `subagent_type: "orchestrator"` 자식 스폰
+- **프로세스 스펙**: `.grok/agents/orchestrator.md` (SoT, 스폰 대상 아님)
+- Review는 write/solve/express **후** Fidelity 게이트; **재생성 루프는 Parent만** 제어
+
+> **최근 업데이트 (2026-07)**: Parent-as-Orchestrator L1 · V2~V4 검증 · KI closed
+
+## Runtime
+- **Primary**: Grok Build — Parent-as-Orchestrator (specialist only spawn)
+- **묶음 archive** (decision · KI · design · report): `docs/archive/2026-07/grok-parent-as-orchestrator/`
+- stubs (decision·KI only): `docs/decisions/…`, `docs/known-issues/…` → 위 폴더; design/report stub 없음
+
+## Known Issues
+| ID | 요약 | 상태 | 문서 |
+|----|------|------|------|
+| KI-STRUCT-ORCH-SPAWN-20260715 | orch 자식 스폰 실패 → Parent-as-Orch (D) · V2~V4 | **closed** · archived | [묶음](../../docs/archive/2026-07/grok-parent-as-orchestrator/) / [stub](../../docs/known-issues/20260715-grok-orchestrator-spawn-failure.md) |
 
 ## 참고 자료
 - **워크플로우 다이어그램**: [workflow.mmd](workflow.mmd)
 - **템플릿 목록 및 선택 기준**: `struct-docs/templates/README.md` (scqa-pattern, iaej-pattern, incident-causal-pattern 등)
 - **상세 시나리오**: `../../docs/struct-usage-scenarios.md` (또는 [scenarios.md](scenarios.md))
+- **Known issues**: `docs/known-issues/`
+- **CC 구 진입 경로 archive**: `docs/archive/2026-07/cc-entrypath-notes.md`

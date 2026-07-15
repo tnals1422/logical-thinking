@@ -222,7 +222,7 @@ submissionTarget: {Brief와 동일}
 
 ---
 
-## 4. Skill Options (스킬 → Orchestrator 전달)
+## 4. Skill Options (스킬 → Parent / orchestrator 프로세스 전달)
 
 ```
 ## Options
@@ -258,7 +258,7 @@ Review Gate 시 Orchestrator가 대상 산출물과 함께 Brief·Deliverable Sp
 
 **DT-Submission** (Wave 2, `submissionTarget: true`): ST1~ST6 — `reference/submission-ready-checklist.md`. Review Data `submissionReady: pass|fail|skipped` · `submissionTiers.st_violations`. ST3/ST4 fail → `fix_stage: W4 external-face`. express Package는 `submissionReady: pass` 후.
 
-Review Data: `deliverableQuality`, `submissionReady`, `submissionTiers`, `deliverableTiers.dt1_violations` — 상세: `.claude/agents/review.md` § Deliverable Quality Model · DT-Submission.
+Review Data: `deliverableQuality`, `submissionReady`, `submissionTiers`, `deliverableTiers.dt1_violations` — 상세: `.grok/agents/review.md` § Deliverable Quality Model · DT-Submission.
 
 ---
 

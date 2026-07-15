@@ -40,7 +40,7 @@ type: cheatsheet
 
 - 저장: `struct-docs/06-researching/YYYYMMDD-{topic}-sources.md`
 - Claim–Source Catalog 표 · Gaps · Balance Notes
-- Orchestrator가 write/solve에 `## Source Validation` 주입
+- **Parent**가 write/solve에 `## Source Validation` 주입 (`research` specialist spawn 후)
 
 ## 모드
 

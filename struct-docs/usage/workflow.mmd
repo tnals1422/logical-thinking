@@ -1,6 +1,8 @@
 flowchart TD
     %% ============================================
-    %% Struct Agent Team Workflow (Phase 1: Brief)
+    %% Struct Agent Team Workflow
+    %% Primary runtime: Grok Build · Parent-as-Orchestrator (L1)
+    %% orchestrator.md = process SoT (do not spawn as subagent)
     %% ============================================
 
     subgraph User["사용자"]
@@ -18,7 +20,7 @@ flowchart TD
         SResearch["struct-research<br>(Phase 6)"]
     end
 
-    subgraph Orchestrator["Orchestrator (sonnet)"]
+    subgraph Parent["Parent = Orchestrator 역할 인라인<br/>Grok main · process: orchestrator.md"]
         direction TB
         O1["1. 커맨드 파싱<br>Task + Options"]
         O2["2. .struct-memory.json 로드<br>(briefs 포함)"]
@@ -30,22 +32,22 @@ flowchart TD
         O6["5. Deliverable Spec 확정<br>유형 → 템플릿 · logicPattern"]
         O7{"Prior Injection?"}
         O8["6. Prior 선택 + Read<br>## Previous Thinking Pyramid"]
-        O9["7. 전문 Agent 라우팅"]
+        O9["7. specialist only spawn<br/>❌ subagent_type orchestrator"]
     end
 
-    subgraph Specialists["Specialist Agents"]
+    subgraph Specialists["Specialist Agents (spawn only)"]
         direction LR
-        Think["thinking.md"]
-        Write["writing.md<br>Brief + Spec + Template"]
-        Solve["problem-solving.md<br>Brief framing"]
-        Express["expression.md<br>Brief + format"]
-        Review["review.md"]
-        Research["research.md<br>Source Validation"]
+        Think["thinking"]
+        Write["writing<br>Brief + Spec + Template"]
+        Solve["problem-solving<br>Brief framing"]
+        Express["expression<br>Brief + format"]
+        Review["review"]
+        Research["research<br>Source Validation"]
     end
 
     subgraph Storage["Storage & Memory"]
         direction TB
-        Save["struct-docs/ 저장"]
+        Save["struct-docs/ 저장 · Parent 확정"]
         MemUpdate[".struct-memory.json<br>briefs · previousThoughts · ..."]
     end
 
@@ -86,7 +88,7 @@ flowchart TD
     Write -.->|Review Gate| ReviewGate
     Solve -.->|Review Gate| ReviewGate
     Express -.->|Review Gate| ReviewGate
-    ReviewGate["Review Gate<br>Fidelity + DT1~3<br>+ DT-Submission"] --> Review
+    ReviewGate["Review Gate · Parent 제어<br>Fidelity + DT1~3<br>+ DT-Submission"] --> Review
     Review --> Save
     Review -.->|submissionReady pass<br>+ split-1-5| ExpressPkg
     ExpressPkg["Express Package<br>Executive Brief 1:5"] --> Express
@@ -96,7 +98,7 @@ flowchart TD
         RType["Verification Type<br>both / deliverable-quality"]
         RDel["Deliverable Quality<br>F1~F4 · DT1 · D7"]
         RSub["DT-Submission<br>ST1~ST6 · submissionReady"]
-        RFix["Regeneration Directives<br>W1/W2/W3/W4"]
+        RFix["Regeneration Directives<br>W1/W2/W3/W4 · Parent only"]
     end
 
     Review --> RType
@@ -139,8 +141,8 @@ flowchart TD
 
     class Call,User user
     class SThink,SWrite,SSolve,SExpress,SReview,SResearch,Skills skill
-    class O1,O2,O3,O4,O5,O5b,O6,O7,O8,O9,Orchestrator orch
+    class O1,O2,O3,O4,O5,O5b,O6,O7,O8,O9,Parent orch
     class O5c hold
     class Think,Write,Solve,Express,Review,Research,Specialists spec
     class Save,MemUpdate,Storage store
-    class SpecW,W1,W2,W3,FinalW,WritingDetail,ReviewGate,RType,RDel,RFix,ReviewDetail,ExpressPkg detail
+    class SpecW,W1,W2,W3,W4,FinalW,FinalWorking,WritingDetail,ReviewGate,RType,RDel,RSub,RFix,ReviewDetail,ExpressPkg detail

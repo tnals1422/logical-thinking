@@ -58,7 +58,8 @@ Full Report (02-writing/)
 - **참여형**: package 생성 전 확인 · 파일 목록 표시
 - **자율형**: write+review pass 후 자동 package · 요약 한 줄
 
-Orchestrator: **Brief → Spec → Full Report Read → Express Package**
+Parent: **Brief → Spec → Full Report Read → Express Package** 후 **`expression` only** spawn.  
+`subagent_type: "orchestrator"` 금지.
 
 ## 예시
 ```
@@ -74,6 +75,6 @@ Orchestrator: **Brief → Spec → Full Report Read → Express Package**
 - coreClaim → 핵심 메시지 · Full Report §구조 매핑
 
 ## 관련
-- `/struct-write` + `split-1-5` → Orchestrator 자동 package (Phase 5)
+- `/struct-write` + `split-1-5` → Parent가 Review pass 후 express package 트리거 (Phase 5)
 - 템플릿: `struct-docs/templates/express/*.md`
 - 전체 흐름: [workflow.mmd](workflow.mmd)

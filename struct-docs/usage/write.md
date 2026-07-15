@@ -14,7 +14,7 @@ type: cheatsheet
 
 ## Brief (Phase 1)
 
-Orchestrator가 write 전 **보고서 운영 Brief**를 수집합니다.
+**Parent**가 write 전 **보고서 운영 Brief**를 수집합니다 (orchestrator.md 프로세스 인라인).
 
 | 필드 | 옵션 예시 | Collaborative 미지정 시 |
 |------|----------|------------------------|
@@ -32,7 +32,8 @@ Orchestrator가 write 전 **보고서 운영 Brief**를 수집합니다.
 - **참여형 (기본)**: Brief 3항목 확인 → Prior 확인 → 템플릿 선택 확인 → **W1/W2 단계별 확인(선택)**
 - **자율형**: Brief 자동 추론 → prior 자동 소비 → W1→W2→W3→(submissionTarget 시 W4) 연속 실행 → 제출본만 반환
 
-Orchestrator: **Brief → (research-first 시 Source Validation) → Deliverable Spec → Prior** 순 Context 구성.
+Parent: **Brief → (research-first 시 Source Validation) → Deliverable Spec → Prior** 순 Context 구성 후 **`writing` only** spawn.  
+`subagent_type: "orchestrator"` 금지.
 
 `research-first: true` — write 전 출처·균형 검증 ([research.md](research.md))
 
@@ -71,7 +72,7 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 | 참여형 | W1·W2·W3 후 확인 가능; W4 제출본 미리보기 |
 | 자율형 | 내부만 실행; `submissionTarget: true` 시 제출본만 저장 |
 
-상세: `.claude/agents/writing.md` § Writing Pipeline · `reference/submission-ready-checklist.md`
+상세: `.grok/agents/writing.md` § Writing Pipeline · `reference/submission-ready-checklist.md`
 
 ## 언제 쓰나
 - 업무 보고서, 기획서, 제안서를 빠르게 작성할 때
@@ -83,7 +84,7 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 /struct-write 자세히 같이 분기 실적 보고서 작성
 /struct-write 빠르게 신규 기능 도입 제안서
 /struct-write {주제} template:objective-policy-pattern
-/struct-write 경쟁사 대비 우위 설명 포함 제안서   # Orchestrator가 내용 신호 분석 → fabe-pattern 제안 가능
+/struct-write 경쟁사 대비 우위 설명 포함 제안서   # Parent가 내용 신호 분석 → fabe-pattern 제안 가능
 ```
 
 ## HTML 보고서 생성 규칙 (기본)
@@ -98,7 +99,7 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 
 ## 템플릿 선택
 
-**Deliverable 유형** (Brief.deliverable-type) — Orchestrator Deliverable Spec:
+**Deliverable 유형** (Brief.deliverable-type) — Parent Deliverable Spec:
 
 | deliverable-type | 템플릿 | 상태 |
 |------------------|--------|------|
@@ -128,7 +129,7 @@ writing agent는 본문을 **W1 → W2 → W3 → W4** 순으로 작성합니다
 임베드 규칙: `patterns/EMBEDDING-GUIDE.md` + `struct-docs/templates/README.md` (Role Contract)
 
 자세한 선택 기준 및 `useWhen` 은 `struct-docs/templates/README.md` 참조.
-Orchestrator는 Brief.deliverableType + pyramid/input 내용 신호(비교→FABE, 단일 제언→PREP, 조건/규칙→case-measure 등)로 logicPattern을 자연스럽게 auto 결정하거나 제안 (상세 휴리스틱: `docs/struct-usage-scenarios.md` S02 "Logic Pattern 선택 가이드").
+Parent는 Brief.deliverableType + pyramid/input 내용 신호(비교→FABE, 단일 제언→PREP, 조건/규칙→case-measure 등)로 logicPattern을 자연스럽게 auto 결정하거나 제안 (상세 휴리스틱: `docs/struct-usage-scenarios.md` S02 "Logic Pattern 선택 가이드").
 `struct-docs/templates/{deliverables|patterns|express|shared}/` 에 새 파일을 추가하면 자동으로 인식됩니다.
 
 ## 출력
@@ -138,7 +139,7 @@ Orchestrator는 Brief.deliverableType + pyramid/input 내용 신호(비교→FAB
 - 저장: `struct-docs/02-writing/YYYYMMDD-{title}.md`
 
 ## 관련
-- `/struct-think` 먼저 구조화 → Orchestrator가 **Prior Thinking Pyramid** 자동 주입 → writing agent가 Pyramid Consumption 규칙 적용.
+- `/struct-think` 먼저 구조화 → Parent가 **Prior Thinking Pyramid** 주입 → writing agent가 Pyramid Consumption 규칙 적용.
 - 템플릿 선택 및 목록: `struct-docs/templates/README.md` (categorized: general/, reports/, proposals/, education/)
 - 전체 흐름: [workflow.mmd](workflow.mmd)
 - 상세 시나리오: [scenarios.md](scenarios.md) (S02, S05, S06)
