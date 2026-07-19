@@ -1,5 +1,7 @@
 # Struct Agent Team (Minto 기반)
 
+> 온보딩·한눈에 보기: [README.md](README.md)
+
 구조화된 논리(피라미드 원칙) 기반 에이전트 팀.
 
 ## 사용 가능한 스킬
